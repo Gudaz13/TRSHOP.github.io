@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TR SHOP</title>
+<title>TR SHOP – เทมเพลตหน้าร้านเกมเมอร์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -12,7 +12,7 @@
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#0c2d7a77,transparent),radial-gradient(900px 500px at 0% 30%,#06205a66,transparent),var(--bg);color:var(--tx);font-family:Prompt,"Noto Sans Thai",system-ui,sans-serif;line-height:1.6}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#0c2d7a77,transparent),radial-gradient(900px 500px at 0% 30%,#06205a66,transparent),var(--bg);color:var(--tx);font-family:Prompt,"Noto Sans Thai",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--p);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
@@ -34,7 +34,7 @@ h2{margin:36px 0 4px;font-size:28px;font-weight:800;line-height:1.2}
 .sub{color:var(--p);margin:0 0 16px;font-weight:500}
 .top{display:grid;grid-template-columns:1fr 330px;gap:20px}
 
-/* แบนเนอร์ใหม่: โลโก้ TR ด้านหลัง + ตัวละคร Free Fire ฝั่งขวา */
+/* แบนเนอร์ใหม่ */
 .banner{position:relative;border-radius:10px;border:1px solid var(--line);overflow:hidden;min-height:290px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
 background:linear-gradient(90deg,#03060ff2 0%,#0a2a73cc 55%,#0d3fa844 100%),repeating-linear-gradient(-30deg,#ffffff08 0 14px,transparent 14px 28px),linear-gradient(120deg,#0d3fa8,#020a1f)}
 .banner-watermark{position:absolute;top:50%;left:38%;transform:translate(-50%,-50%) rotate(-10deg);font-size:150px;font-weight:800;font-style:italic;color:rgba(77,184,255,0.08);pointer-events:none;user-select:none;z-index:0}
@@ -82,7 +82,7 @@ main,footer{position:relative;z-index:1}
 .tile{position:relative;box-shadow:0 0 18px #1f6bff22,inset 0 1px 0 #ffffff30}
 .prod{box-shadow:inset 0 1px 0 #ffffff1a}
 
-/* Modal ป๊อปอัปล็อกอิน / สมัครสมาชิก */
+/* Modal ป๊อปอัป */
 .modal-bg{position:fixed;inset:0;background:#000000cc;backdrop-filter:blur(4px);display:none;place-items:center;z-index:50;padding:16px}
 .modal-bg.show{display:grid}
 .modal{background:var(--card);border:1px solid var(--line);border-radius:12px;width:100%;max-width:380px;padding:24px;box-shadow:0 0 40px #1f6bff44;position:relative}
@@ -99,8 +99,23 @@ main,footer{position:relative;z-index:1}
 .close-modal{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer}
 .close-modal:hover{color:#fff}
 
-@media(max-width:860px){.top{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}}
-@media(max-width:480px){.tiles{grid-template-columns:1fr}.banner{padding:20px}.banner-char{height:75%;opacity:.85}}
+/* ปรับแต่งสำหรับมือถือ (แก้เว็บอ้วน บาน ล้นจอ) */
+img, .banner, .notice, .tile, .prod { max-width: 100%; height: auto; }
+@media (max-width: 768px) {
+  .wrap { padding: 0 12px; }
+  .top { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+  .steps { grid-template-columns: 1fr; }
+  .banner { min-height: 220px; padding: 20px; }
+  .banner h1 { font-size: 28px !important; }
+  header .wrap { gap: 10px; }
+  nav a { padding: 5px 10px; font-size: 14px; }
+}
+@media(max-width:480px){
+  .tiles { grid-template-columns: 1fr; }
+  .banner-char { height: 75%; opacity: .85; }
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -113,7 +128,6 @@ main,footer{position:relative;z-index:1}
   <nav aria-label="เมนูหลัก">
    <a class="on" href="#home">หน้าหลัก</a><a href="#topup">เติมเงิน</a><a href="#shop">ร้านค้า</a><a href="#order">สั่งซื้อ</a><a href="#spin">เกมสุ่ม</a><a href="#points">แลกแต้ม</a><a href="#contact">ติดต่อเรา</a>
   </nav>
-  <!-- พื้นที่ปุ่มล็อกอิน / แสดงชื่อสมาชิก -->
   <div id="auth-area">
     <button class="login" onclick="openAuthModal()">ล็อกอิน / สมัครสมาชิก</button>
   </div>
@@ -121,25 +135,22 @@ main,footer{position:relative;z-index:1}
 </header>
 
 <main class="wrap" id="home">
- <h2> </h2>
- <p class="sub">จำหน่ายโปร และ &amp; proxy ต่างๆ</p>
+ <h2>โปรโมชั่นและข่าวสาร</h2>
+ <p class="sub">Promotion &amp; News</p>
  <div class="top">
   <section class="banner" aria-label="แบนเนอร์โปรโมชั่น">
-   <!-- โลโก้ TR ลายน้ำด้านหลัง -->
    <div class="banner-watermark">TR</div>
-   <!-- รูปตัวละคร Free Fire ฝั่งขวา (นำไฟล์ ff-char.png มาวางในโฟลเดอร์เดียวกัน) -->
    <img src="ff-char.png" alt="" class="banner-char" onerror="this.style.display='none'">
-
-   <span class="badge">ยังไม่มี</span>
-   <h1>TR SHOP<br></h1>
-   <p>จำหนายโปรและพร็อกซี่ต่างๆ ส่งไว ระบบอัตโนมัติ 24 ชั่วโมง</p>
+   <span class="badge">โปรใหม่ประจำสัปดาห์</span>
+   <h1>WELCOME TO<br>TR SHOP</h1>
+   <p>เติมเกมถูกลิขสิทธิ์ ส่งไว ระบบอัตโนมัติ บริการ 24 ชั่วโมง</p>
   </section>
   <aside class="notice">
    <span class="pill">ประกาศจากทางร้าน</span>
    <div class="box">
     <div>พบปัญหาด้านใด ติดต่อได้ที่นี่</div>
-    <div>TIKTOK: TRSHOP </div>
-    <div>DISCORD: TRSHOPD </div>
+    <div>TIKTOK: ชื่อร้านของคุณ</div>
+    <div>DISCORD: ชื่อร้านของคุณ</div>
     <div class="meta"><span>อัปเดตล่าสุด</span><span>17/11/2026</span></div>
    </div>
   </aside>
@@ -172,7 +183,6 @@ main,footer{position:relative;z-index:1}
 
 <footer id="contact"><div class="wrap">TR SHOP · เทมเพลตดีไซน์ตัวอย่าง · ติดต่อ LINE: @yourshop</div></footer>
 
-<!-- หน้าต่างป๊อปอัป Login / Register -->
 <div class="modal-bg" id="authModal" onclick="if(event.target===this)closeAuthModal()">
   <div class="modal">
     <button class="close-modal" onclick="closeAuthModal()">&times;</button>
@@ -187,7 +197,6 @@ main,footer{position:relative;z-index:1}
   </div>
 </div>
 
-<!-- สคริปต์เอฟเฟกต์สายฟ้าพื้นหลัง -->
 <script>
 (function(){
 var c=document.getElementById('fx'),x=c.getContext('2d');
@@ -216,9 +225,7 @@ if(!reduce){setTimeout(loop,800);frame()}
 })();
 </script>
 
-<!-- สคริปต์ระบบสมาชิก Supabase -->
 <script>
-  // ⚠️ ใส่ URL และ ANON KEY จากโปรเจกต์ Supabase ของคุณตรงนี้ ⚠️
   const SUPABASE_URL = 'YOUR_SUPABASE_URL';
   const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
 
