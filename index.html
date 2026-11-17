@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TR SHOP – Official Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--bg:#030712;--card:#0b1329;--line:#1e293b;--p:#38bdf8;--p2:#0284c7;--tx:#f8fafc;--mut:#94a3b8}
@@ -17,7 +17,7 @@ a{color:inherit;text-decoration:none}
 /* Navbar สไตล์ ProjectX คลีนๆ */
 header{background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-weight:700;font-size:18px;letter-spacing:-0.5px;color:#fff}
+.logo{font-weight:700;font-size:18px;letter-spacing:-0.5px;color:#fff;display:flex;align-items:center;gap:8px}
 nav{display:flex;gap:4px}
 nav a{padding:6px 12px;border-radius:6px;color:var(--mut);font-size:14px;font-weight:500;transition:.2s}
 nav a.on, nav a:hover{background:#1e293b;color:#fff}
@@ -31,11 +31,49 @@ main{padding:32px 0 64px}
 h2{margin:28px 0 6px;font-size:22px;font-weight:700}
 .sub{color:var(--mut);margin:0 0 16px;font-size:14px}
 
-/* แบนเนอร์ดีไซน์เรียบหรูสไตล์โปร */
-.banner{background:linear-gradient(135deg,#0f172a 0%,#0284c722 100%);border:1px solid var(--line);border-radius:12px;padding:32px;position:relative;overflow:hidden;margin-bottom:24px}
-.banner h1{margin:0 0 8px;font-size:28px;font-weight:700;letter-spacing:-0.5px}
-.banner p{margin:0;color:var(--mut);font-size:15px;max-width:40ch}
-.badge{display:inline-block;background:#0284c733;border:1px solid #0284c7;color:#38bdf8;padding:2px 10px;border-radius:99px;font-size:12px;margin-bottom:12px;font-weight:500}
+/* แบนเนอร์ใส่โลโก้ TR.jpg + ตัวละคร Free Fire ฝั่งขวา */
+.banner{
+  background: linear-gradient(90deg, #060c1d 0%, #0a1938 55%, #0284c733 100%);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* โลโก้ TR.jpg เจาะพื้นดำให้กลืนเป็นลายน้ำเรืองแสงด้านหลัง */
+.banner-logo-bg{
+  position: absolute;
+  top: 50%;
+  left: 42%;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  width: 280px;
+  opacity: 0.28;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+}
+/* ตัวละคร Free Fire ยืนกอดอกฝั่งขวา */
+.banner-char{
+  position: absolute;
+  right: 16px;
+  bottom: -6px;
+  height: 96%;
+  max-width: 48%;
+  object-fit: contain;
+  object-position: bottom right;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(-8px 4px 16px rgba(0, 0, 0, 0.85));
+}
+.banner .badge, .banner h1, .banner p{position:relative;z-index:2}
+.banner h1{margin:0 0 8px;font-size:32px;font-weight:800;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(2,132,199,0.5)}
+.banner p{margin:0;color:#cbd5e1;font-size:15px;max-width:34ch}
+.badge{align-self:flex-start;background:#0284c733;border:1px solid #0284c7;color:#38bdf8;padding:2px 10px;border-radius:99px;font-size:12px;margin-bottom:12px;font-weight:600}
 
 /* เมนูด่วน 4 ช่อง (Tiles) */
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
@@ -85,7 +123,12 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-siz
   .tiles{grid-template-columns:repeat(2,1fr)}
   .grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:1fr}
-  nav{display:none} /* ซ่อนเมนูยาวในมือถือกันล้น (หรือปัดเลื่อนได้) */
+  nav{display:none}
+  .banner{padding:24px 20px;min-height:190px}
+  .banner h1{font-size:24px}
+  .banner p{font-size:13px;max-width:24ch}
+  .banner-logo-bg{width:190px;left:35%}
+  .banner-char{right:4px;height:88%}
 }
 </style>
 </head>
@@ -105,6 +148,11 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-siz
 
 <main class="wrap" id="home">
  <section class="banner">
+  <!-- โลโก้ TR.jpg ด้านหลัง -->
+  <img src="TR.png" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
+  <!-- ตัวละคร Free Fire ฝั่งขวา -->
+  <img src="ff-char.png" alt="Free Fire Character" class="banner-char" onerror="this.style.display='none'">
+
   <span class="badge">SYSTEM ONLINE</span>
   <h1>TR SHOP OFFICIAL</h1>
   <p>บริการเติมเกมระบบอัตโนมัติ รวดเร็ว ปลอดภัย 24 ชั่วโมง</p>
@@ -135,7 +183,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-siz
  </div>
 </main>
 
-<footer><div class="wrap">TR SHOP · Professional Web Template</div></footer>
+<footer><div class="wrap">TR SHOP · Official Store</div></footer>
 
 <div class="modal-bg" id="authModal" onclick="if(event.target===this)closeAuthModal()">
   <div class="modal">
