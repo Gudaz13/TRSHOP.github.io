@@ -3,140 +3,269 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TR SHOP – Official Store</title>
+<title>TRSHOP – Official Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--bg:#030712;--card:#0b1329;--line:#1e293b;--p:#38bdf8;--p2:#0284c7;--tx:#f8fafc;--mut:#94a3b8}
+:root{
+  --bg:#02050e;
+  --glass:rgba(8, 18, 42, 0.55);
+  --glass-hover:rgba(14, 30, 68, 0.72);
+  --line:rgba(56, 189, 248, 0.25);
+  --line-bright:rgba(56, 189, 248, 0.6);
+  --p:#38bdf8;
+  --p2:#1d4ed8;
+  --tx:#f1f5f9;
+  --mut:#94a3b8;
+}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:Prompt,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{
+  margin:0;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(29, 78, 216, 0.35), transparent),
+    radial-gradient(700px 450px at 10% 35%, rgba(14, 165, 233, 0.2), transparent),
+    var(--bg);
+  color:var(--tx);
+  font-family:Prompt,sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
 
-/* Navbar สไตล์ ProjectX คลีนๆ */
-header{background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-weight:700;font-size:18px;letter-spacing:-0.5px;color:#fff;display:flex;align-items:center;gap:8px}
+/* แคนวาสสายฟ้าผ่าพื้นหลัง */
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+header,main,footer{position:relative;z-index:2}
+
+/* Navbar สไตล์กระจกมืดคลีนๆ */
+header{
+  background:rgba(2, 6, 18, 0.75);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{
+  font-weight:800;
+  font-size:19px;
+  font-style:italic;
+  letter-spacing:0.5px;
+  background:linear-gradient(90deg,#fff,#38bdf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
 nav{display:flex;gap:4px}
-nav a{padding:6px 12px;border-radius:6px;color:var(--mut);font-size:14px;font-weight:500;transition:.2s}
-nav a.on, nav a:hover{background:#1e293b;color:#fff}
-.login{border:1px solid var(--line);color:#fff;background:#0f172a;padding:6px 14px;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;transition:.2s}
-.login:hover{border-color:var(--p);background:#1e293b}
+nav a{padding:6px 12px;border-radius:8px;color:var(--mut);font-size:14px;font-weight:500;transition:.2s}
+nav a.on, nav a:hover{background:rgba(56, 189, 248, 0.15);color:#fff;box-shadow:inset 0 0 0 1px rgba(56, 189, 248, 0.3)}
+.login{
+  border:1px solid var(--line-bright);
+  color:#fff;
+  background:linear-gradient(135deg, rgba(29, 78, 216, 0.4), rgba(2, 132, 199, 0.2));
+  backdrop-filter:blur(8px);
+  padding:6px 14px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 0 15px rgba(56, 189, 248, 0.15);
+}
+.login:hover{background:var(--p);color:#020617;box-shadow:0 0 20px rgba(56, 189, 248, 0.5)}
 .user-box{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--p)}
-.logout-btn{background:#ef444422;border:1px solid #ef4444;color:#fca5a5;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px}
+.logout-btn{background:rgba(239, 68, 68, 0.15);border:1px solid rgba(239, 68, 68, 0.5);color:#fca5a5;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px}
+.logout-btn:hover{background:#ef4444;color:#fff}
 
-/* Main Layout กระชับ ไม่บาน */
-main{padding:32px 0 64px}
-h2{margin:28px 0 6px;font-size:22px;font-weight:700}
-.sub{color:var(--mut);margin:0 0 16px;font-size:14px}
+/* Main Layout สมส่วนไม่บาน */
+main{padding:28px 0 60px}
+h2{margin:28px 0 4px;font-size:21px;font-weight:700}
+.sub{color:var(--mut);margin:0 0 16px;font-size:13.5px}
 
-/* แบนเนอร์ใส่โลโก้ TR.jpg + ตัวละคร Free Fire ฝั่งขวา */
+/* Glass Card Effect (พื้นน้ำเงินดำ เงากระจก) */
+.glass{
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);
+  box-shadow:0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  position:relative;
+  overflow:hidden;
+}
+/* แสงสะท้อนเงากระจกเฉียง */
+.glass::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 35%, transparent 36%);
+  pointer-events:none;
+}
+
+/* แบนเนอร์หลัก */
 .banner{
-  background: linear-gradient(90deg, #060c1d 0%, #0a1938 55%, #0284c733 100%);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 36px 32px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 24px;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background:linear-gradient(105deg, rgba(4, 10, 28, 0.9) 0%, rgba(12, 34, 84, 0.7) 60%, rgba(2, 132, 199, 0.35) 100%);
+  border-radius:14px;
+  padding:34px 30px;
+  margin-bottom:22px;
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
-/* โลโก้ TR.jpg เจาะพื้นดำให้กลืนเป็นลายน้ำเรืองแสงด้านหลัง */
 .banner-logo-bg{
-  position: absolute;
-  top: 50%;
-  left: 42%;
-  transform: translate(-50%, -50%) rotate(-6deg);
-  width: 280px;
-  opacity: 0.28;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  z-index: 0;
+  position:absolute;
+  top:50%;
+  left:42%;
+  transform:translate(-50%, -50%) rotate(-6deg);
+  width:270px;
+  opacity:0.32;
+  mix-blend-mode:screen;
+  pointer-events:none;
+  z-index:0;
 }
-/* ตัวละคร Free Fire ยืนกอดอกฝั่งขวา */
 .banner-char{
-  position: absolute;
-  right: 16px;
-  bottom: -6px;
-  height: 96%;
-  max-width: 48%;
-  object-fit: contain;
-  object-position: bottom right;
-  z-index: 1;
-  pointer-events: none;
-  filter: drop-shadow(-8px 4px 16px rgba(0, 0, 0, 0.85));
+  position:absolute;
+  right:14px;
+  bottom:-4px;
+  height:96%;
+  max-width:48%;
+  object-fit:contain;
+  object-position:bottom right;
+  z-index:1;
+  pointer-events:none;
+  filter:drop-shadow(-6px 4px 16px rgba(0, 0, 0, 0.85));
 }
 .banner .badge, .banner h1, .banner p{position:relative;z-index:2}
-.banner h1{margin:0 0 8px;font-size:32px;font-weight:800;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(2,132,199,0.5)}
-.banner p{margin:0;color:#cbd5e1;font-size:15px;max-width:34ch}
-.badge{align-self:flex-start;background:#0284c733;border:1px solid #0284c7;color:#38bdf8;padding:2px 10px;border-radius:99px;font-size:12px;margin-bottom:12px;font-weight:600}
+.banner h1{
+  margin:0 0 6px;
+  font-size:32px;
+  font-weight:800;
+  font-style:italic;
+  letter-spacing:-0.5px;
+  text-shadow:0 0 24px rgba(56, 189, 248, 0.6);
+}
+.banner p{margin:0;color:#cbd5e1;font-size:14.5px;max-width:34ch}
+.badge{
+  align-self:flex-start;
+  background:rgba(2, 132, 199, 0.25);
+  border:1px solid var(--p);
+  color:var(--p);
+  padding:3px 10px;
+  border-radius:99px;
+  font-size:11.5px;
+  margin-bottom:10px;
+  font-weight:600;
+  box-shadow:0 0 12px rgba(56, 189, 248, 0.3);
+}
 
-/* เมนูด่วน 4 ช่อง (Tiles) */
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;align-items:center;gap:12px;transition:.2s}
-.tile:hover{border-color:var(--p);transform:translateY(-2px)}
-.tile svg{width:24px;height:24px;stroke:var(--p);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* เมนูด่วน 4 ช่อง */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.tile{border-radius:12px;padding:15px;display:flex;align-items:center;gap:12px;transition:.2s}
+.tile:hover{background:var(--glass-hover);border-color:var(--line-bright);transform:translateY(-2px);box-shadow:0 8px 24px rgba(2, 132, 199, 0.25), inset 0 1px 0 rgba(255,255,255,0.25)}
+.tile svg{width:24px;height:24px;stroke:var(--p);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;filter:drop-shadow(0 0 6px rgba(56, 189, 248, 0.5))}
 .tile b{display:block;font-size:14px;font-weight:600}
 .tile span{color:var(--mut);font-size:12px}
 
 /* สินค้า Grid */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.prod{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
-.prod:hover{border-color:#475569}
-.thumb{height:100px;background:#1e293b;display:grid;place-items:center;font-weight:700;font-size:20px;color:var(--mut)}
+.prod{border-radius:12px;display:flex;flex-direction:column;transition:.2s}
+.prod:hover{background:var(--glass-hover);border-color:var(--line-bright);transform:translateY(-2px)}
+.thumb{
+  height:96px;
+  background:linear-gradient(135deg, rgba(29, 78, 216, 0.45), rgba(2, 6, 23, 0.8));
+  border-bottom:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  font-weight:800;
+  font-style:italic;
+  font-size:22px;
+  color:#bae6fd;
+  text-shadow:0 0 14px rgba(56, 189, 248, 0.5);
+}
 .prod .in{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}
 .prod h3{margin:0;font-size:15px;font-weight:600}
-.prod .d{color:var(--mut);font-size:13px;flex:1}
-.prod .row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.prod .d{color:var(--mut);font-size:12.5px;flex:1}
+.prod .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .price{font-weight:700;font-size:16px;color:var(--p)}
-.buy{background:var(--p);border:0;color:#030712;font:inherit;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:.2s}
-.buy:hover{background:#38bdf8}
+.buy{
+  background:linear-gradient(135deg, #0284c7, #2563eb);
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;
+  font:inherit;
+  font-size:13px;
+  font-weight:600;
+  padding:6px 14px;
+  border-radius:7px;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 0 12px rgba(37, 99, 235, 0.4);
+}
+.buy:hover{background:var(--p);color:#020617;box-shadow:0 0 16px rgba(56, 189, 248, 0.7)}
 
 /* ขั้นตอนการสั่งซื้อ */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
-.step b{display:block;font-size:15px;margin-bottom:4px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.step{border-radius:12px;padding:16px}
+.step b{display:block;font-size:14.5px;margin-bottom:4px;color:#e0f2fe}
 .step span{color:var(--mut);font-size:13px}
 
-footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-size:13px;text-align:center;margin-top:48px}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-size:13px;text-align:center;background:rgba(2, 5, 14, 0.7);backdrop-filter:blur(10px)}
 
-/* Modal ล็อกอิน */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);display:none;place-items:center;z-index:100;padding:16px}
+/* Modal ล็อกอินสไตล์ Glass */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:none;place-items:center;z-index:100;padding:16px}
 .modal-bg.show{display:grid}
-.modal{background:#090d16;border:1px solid var(--line);border-radius:12px;width:100%;max-width:360px;padding:24px;position:relative}
-.modal h3{margin:0 0 6px;font-size:20px}
+.modal{
+  background:rgba(8, 17, 38, 0.88);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--line-bright);
+  box-shadow:0 0 40px rgba(2, 132, 199, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+  border-radius:14px;
+  width:100%;
+  max-width:360px;
+  padding:24px;
+  position:relative;
+}
+.modal h3{margin:0 0 4px;font-size:20px}
 .modal p{margin:0 0 16px;font-size:13px;color:var(--mut)}
-.modal input{width:100%;padding:10px 12px;margin-bottom:12px;border-radius:6px;border:1px solid var(--line);background:#030712;color:#fff;font-family:inherit;font-size:14px}
-.modal input:focus{border-color:var(--p);outline:none}
+.modal input{width:100%;padding:10px 12px;margin-bottom:12px;border-radius:8px;border:1px solid var(--line);background:rgba(2, 6, 23, 0.8);color:#fff;font-family:inherit;font-size:14px}
+.modal input:focus{border-color:var(--p);outline:none;box-shadow:0 0 10px rgba(56, 189, 248, 0.25)}
 .modal-btns{display:flex;gap:8px}
-.modal-btns button{flex:1;padding:8px;border-radius:6px;border:0;font:inherit;font-weight:600;cursor:pointer;font-size:14px}
-.btn-primary{background:var(--p);color:#030712}
-.btn-sec{background:#1e293b;color:#fff}
+.modal-btns button{flex:1;padding:9px;border-radius:8px;border:0;font:inherit;font-weight:600;cursor:pointer;font-size:14px;transition:.2s}
+.btn-primary{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff}
+.btn-primary:hover{background:var(--p);color:#020617}
+.btn-sec{background:rgba(30, 41, 59, 0.8);border:1px solid var(--line);color:#fff}
+.btn-sec:hover{border-color:var(--p)}
 .close-modal{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--mut);font-size:20px;cursor:pointer}
+.close-modal:hover{color:#fff}
 
-/* Responsive มือถือให้ผอมเพรียวเท่าเว็บตัวอย่าง */
+/* Responsive มือถือสมส่วน */
 @media(max-width:768px){
-  .tiles{grid-template-columns:repeat(2,1fr)}
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .steps{grid-template-columns:1fr}
+  .wrap{padding:0 14px}
+  .tiles{grid-template-columns:repeat(2,1fr);gap:10px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .steps{grid-template-columns:1fr;gap:10px}
   nav{display:none}
-  .banner{padding:24px 20px;min-height:190px}
+  .banner{padding:22px 18px;min-height:185px}
   .banner h1{font-size:24px}
-  .banner p{font-size:13px;max-width:24ch}
-  .banner-logo-bg{width:190px;left:35%}
+  .banner p{font-size:13px;max-width:23ch}
+  .banner-logo-bg{width:180px;left:35%}
   .banner-char{right:4px;height:88%}
 }
 </style>
 </head>
 <body>
 
+<!-- แคนวาสแอนิเมชันสายฟ้าผ่า -->
+<canvas id="fx" aria-hidden="true"></canvas>
+
 <header>
  <div class="wrap">
-  <a class="logo" href="#home">TR SHOP</a>
+  <a class="logo" href="#home">TRSHOP</a>
   <nav>
    <a class="on" href="#home">หน้าหลัก</a><a href="#shop">สินค้า</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
   </nav>
@@ -147,51 +276,52 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-siz
 </header>
 
 <main class="wrap" id="home">
- <section class="banner">
+ <section class="banner glass">
   <!-- โลโก้ TR.jpg ด้านหลัง -->
-  <img src="TR.png" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
+  <img src="TR.jpg" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
   <!-- ตัวละคร Free Fire ฝั่งขวา -->
-  <img src="ff-char.png" alt="Free Fire Character" class="banner-char" onerror="this.style.display='none'">
+  <img src="ff-removebg-preview.png" alt="Free Fire Character" class="banner-char" onerror="this.style.display='none'">
 
   <span class="badge">SYSTEM ONLINE</span>
-  <h1>TR SHOP OFFICIAL</h1>
+  <h1>TRSHOP OFFICIAL</h1>
   <p>บริการเติมเกมระบบอัตโนมัติ รวดเร็ว ปลอดภัย 24 ชั่วโมง</p>
  </section>
 
  <div class="tiles" id="topup">
-  <a class="tile" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>ร้านค้า</b><span>ดูสินค้าทั้งหมด</span></div></a>
-  <a class="tile" href="#topup"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเงิน</b><span>เติมเครดิตออโต้</span></div></a>
-  <a class="tile" href="#order"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติ</b><span>เช็คสถานะคำสั่งซื้อ</span></div></a>
-  <a class="tile" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div><b>ติดต่อเรา</b><span>แอดมินดูแล 24 ชม.</span></div></a>
+  <a class="tile glass" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>ร้านค้า</b><span>ดูสินค้าทั้งหมด</span></div></a>
+  <a class="tile glass" href="#topup"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเงิน</b><span>เติมเครดิตออโต้</span></div></a>
+  <a class="tile glass" href="#order"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติ</b><span>เช็คสถานะคำสั่งซื้อ</span></div></a>
+  <a class="tile glass" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div><b>ติดต่อเรา</b><span>แอดมินดูแล 24 ชม.</span></div></a>
  </div>
 
  <h2 id="shop">สินค้าแนะนำ</h2>
  <p class="sub">เลือกแพ็กเกจที่คุณต้องการเติมได้ทันที</p>
  <div class="grid">
-  <article class="prod"><div class="thumb">100</div><div class="in"><h3>เพชร 100</h3><div class="d">เติมไวใน 1 นาที</div><div class="row"><span class="price">฿35</span><button class="buy">สั่งซื้อ</button></div></div></article>
-  <article class="prod"><div class="thumb">310</div><div class="in"><h3>เพชร 310</h3><div class="d">แพ็กยอดนิยม คุ้มสุด</div><div class="row"><span class="price">฿99</span><button class="buy">สั่งซื้อ</button></div></div></article>
-  <article class="prod"><div class="thumb">PASS</div><div class="in"><h3>บัตรรายเดือน</h3><div class="d">รับเพชรต่อเนื่อง</div><div class="row"><span class="price">฿129</span><button class="buy">สั่งซื้อ</button></div></div></article>
-  <article class="prod"><div class="thumb">1060</div><div class="in"><h3>เพชร 1,060</h3><div class="d">สำหรับสายสกิน</div><div class="row"><span class="price">฿329</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod glass"><div class="thumb">100</div><div class="in"><h3>เพชร 100</h3><div class="d">เติมไวใน 1 นาที</div><div class="row"><span class="price">฿35</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod glass"><div class="thumb">310</div><div class="in"><h3>เพชร 310</h3><div class="d">แพ็กยอดนิยม คุ้มสุด</div><div class="row"><span class="price">฿99</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod glass"><div class="thumb">PASS</div><div class="in"><h3>บัตรรายเดือน</h3><div class="d">รับเพชรต่อเนื่อง</div><div class="row"><span class="price">฿129</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod glass"><div class="thumb">1060</div><div class="in"><h3>เพชร 1,060</h3><div class="d">สำหรับสายสกิน</div><div class="row"><span class="price">฿329</span><button class="buy">สั่งซื้อ</button></div></div></article>
  </div>
 
  <h2 id="order">ขั้นตอนการใช้งาน</h2>
  <p class="sub">ใช้งานง่ายผ่านระบบอัตโนมัติ</p>
  <div class="steps">
-  <div class="step"><b>1. เติมเงินเข้าเว็บ</b><span>สแกน QR โอนเงินยอดเข้าทันที</span></div>
-  <div class="step"><b>2. เลือกสินค้า</b><span>ระบุ UID แล้วกดสั่งซื้อ</span></div>
-  <div class="step"><b>3. รอรับของ</b><span>ระบบจัดส่งให้อัตโนมัติในเกม</span></div>
+  <div class="step glass"><b>1. เติมเงินเข้าเว็บ</b><span>สแกน QR โอนเงินยอดเข้าทันที</span></div>
+  <div class="step glass"><b>2. เลือกสินค้า</b><span>ระบุ UID แล้วกดสั่งซื้อ</span></div>
+  <div class="step glass"><b>3. รอรับของ</b><span>ระบบจัดส่งให้อัตโนมัติในเกม</span></div>
  </div>
 </main>
 
-<footer><div class="wrap">TR SHOP · Official Store</div></footer>
+<footer id="contact"><div class="wrap">TRSHOP · Official Store</div></footer>
 
+<!-- Modal ล็อกอิน / สมัครสมาชิก -->
 <div class="modal-bg" id="authModal" onclick="if(event.target===this)closeAuthModal()">
   <div class="modal">
     <button class="close-modal" onclick="closeAuthModal()">&times;</button>
     <h3>เข้าสู่ระบบ</h3>
-    <p>เข้าสู่ระบบสมาชิก TR SHOP</p>
+    <p>เข้าสู่ระบบสมาชิก TRSHOP</p>
     <input type="email" id="authEmail" placeholder="อีเมล">
-    <input type="password" id="authPass" placeholder="รหัสผ่าน">
+    <input type="password" id="authPass" placeholder="รหัสผ่าน (6 ตัวอักษรขึ้นไป)">
     <div class="modal-btns">
       <button class="btn-primary" onclick="handleSignIn()">เข้าสู่ระบบ</button>
       <button class="btn-sec" onclick="handleSignUp()">สมัครสมาชิก</button>
@@ -199,48 +329,86 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-siz
   </div>
 </div>
 
+<!-- สคริปต์แอนิเมชันสายฟ้าผ่า -->
 <script>
-  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-  let sbClient = null;
-  if (SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
-    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+(function(){
+  var c=document.getElementById('fx'),x=c.getContext('2d');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W,H,bolts=[];
+  function size(){var d=devicePixelRatio||1;W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0)}
+  size();addEventListener('resize',size);
+  function bolt(x0,y0,x1,y1,spread,out){
+    var pts=[[x0,y0]],n=14;
+    for(var i=1;i<n;i++){var t=i/n;pts.push([x0+(x1-x0)*t+(Math.random()-.5)*spread,y0+(y1-y0)*t+Math.random()*10])}
+    pts.push([x1,y1]);out.push(pts);return pts;
   }
+  function strike(){
+    var out=[],sx=Math.random()*W,ex=sx+(Math.random()-.5)*W*.3,ey=H*(.45+Math.random()*.45);
+    var main=bolt(sx,-10,ex,ey,70,out);
+    for(var k=0;k<3;k++){var p=main[3+Math.floor(Math.random()*8)];bolt(p[0],p[1],p[0]+(Math.random()-.5)*260,p[1]+120+Math.random()*160,40,out)}
+    bolts.push({segs:out,life:1});
+  }
+  function frame(){
+    x.clearRect(0,0,W,H);
+    bolts=bolts.filter(function(b){return b.life>0});
+    bolts.forEach(function(b){
+      var a=b.life;
+      x.fillStyle='rgba(30,100,255,'+(a*a*.07)+')';x.fillRect(0,0,W,H);
+      x.lineJoin='round';
+      b.segs.forEach(function(pts,i){
+        x.beginPath();pts.forEach(function(p,j){j?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});
+        x.shadowColor='#38bdf8';x.shadowBlur=22;x.strokeStyle='rgba(56,189,248,'+a*.55+')';x.lineWidth=i?2:4.5;x.stroke();
+        x.shadowBlur=0;x.strokeStyle='rgba(235,248,255,'+a+')';x.lineWidth=i?1:2;x.stroke();
+      });
+      b.life-=.045;
+    });
+    requestAnimationFrame(frame);
+  }
+  function loop(){strike();if(Math.random()<.4)setTimeout(strike,120);setTimeout(loop,2500+Math.random()*3500)}
+  if(!reduce){setTimeout(loop,600);frame()}
+})();
+</script>
+
+<!-- สคริปต์ Supabase เชื่อมต่อคีย์ของคุณเรียบร้อย -->
+<script>
+  const SUPABASE_URL = 'https://csjyobjamxlaexdgfdot.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_h2Bnc07NAFkzdCaSBVtf6g_XeQXWJXN';
+  const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   function openAuthModal() { document.getElementById('authModal').classList.add('show'); }
   function closeAuthModal() { document.getElementById('authModal').classList.remove('show'); }
 
   async function handleSignUp() {
-    if (!sbClient) return alert('กรุณาใส่ Supabase URL และ Key ก่อนครับ');
     const email = document.getElementById('authEmail').value.trim();
     const password = document.getElementById('authPass').value;
+    if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
+
     const { error } = await sbClient.auth.signUp({ email, password });
     if (error) alert('สมัครไม่สำเร็จ: ' + error.message);
-    else { alert('สมัครสำเร็จ!'); closeAuthModal(); checkSession(); }
+    else { alert('สมัครสมาชิก TRSHOP สำเร็จ!'); closeAuthModal(); checkSession(); }
   }
 
   async function handleSignIn() {
-    if (!sbClient) return alert('กรุณาใส่ Supabase URL และ Key ก่อนครับ');
     const email = document.getElementById('authEmail').value.trim();
     const password = document.getElementById('authPass').value;
+    if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
+
     const { error } = await sbClient.auth.signInWithPassword({ email, password });
     if (error) alert('เข้าสู่ระบบไม่สำเร็จ: ' + error.message);
     else { closeAuthModal(); checkSession(); }
   }
 
   async function handleSignOut() {
-    if (!sbClient) return;
     await sbClient.auth.signOut();
     checkSession();
   }
 
   async function checkSession() {
-    if (!sbClient) return;
     const { data: { session } } = await sbClient.auth.getSession();
     const area = document.getElementById('auth-area');
     if (session) {
       const name = session.user.email.split('@')[0];
-      area.innerHTML = `<div class="user-box"><span>${name}</span><button class="logout-btn" onclick="handleSignOut()">ออก</button></div>`;
+      area.innerHTML = `<div class="user-box"><span>👤 ${name}</span><button class="logout-btn" onclick="handleSignOut()">ออก</button></div>`;
     } else {
       area.innerHTML = `<button class="login" onclick="openAuthModal()">เข้าสู่ระบบ</button>`;
     }
