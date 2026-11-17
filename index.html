@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TR SHOP – เทมเพลตหน้าร้านเกมเมอร์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#010309;--bg2:#07101f;--card:#060d1a;--line:#1f5fbf;--p:#4db8ff;--p2:#1f6bff;--tx:#eaf4ff;--mut:#8fa8c7;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#0c2d7a77,transparent),radial-gradient(900px 500px at 0% 30%,#06205a66,transparent),var(--bg);color:var(--tx);font-family:Prompt,"Noto Sans Thai",system-ui,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--p);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header{background:#000;border-bottom:1px solid #12274a;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#7fd6ff,var(--p2) 55%,#0a2a73);box-shadow:0 0 14px #1f6bff99,inset 0 0 0 2px #ffffff30;font-weight:800;font-style:italic;font-size:17px;flex:none}
+nav{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:6px 14px;border-radius:8px;color:var(--p);font-weight:500;white-space:nowrap}
+nav a.on{background:var(--p);color:#021226}
+nav a:hover:not(.on){background:#ffffff12}
+.login{border:1px solid var(--p);color:var(--p);padding:7px 16px;border-radius:6px;white-space:nowrap;font-weight:500}
+.login:hover{background:var(--p);color:#021226}
+h2{margin:36px 0 4px;font-size:28px;font-weight:800;line-height:1.2}
+.sub{color:var(--p);margin:0 0 16px;font-weight:500}
+.top{display:grid;grid-template-columns:1fr 330px;gap:20px}
+.banner{position:relative;border-radius:10px;border:1px solid var(--line);overflow:hidden;min-height:290px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;background:
+linear-gradient(135deg,#0a2a73cc,#03060fcc),repeating-linear-gradient(-30deg,#ffffff08 0 14px,transparent 14px 28px),linear-gradient(120deg,#0d3fa8,#020a1f)}
+.banner h1{margin:0;font-size:clamp(34px,6vw,60px);line-height:1;font-weight:800;font-style:italic;letter-spacing:-.02em;text-shadow:0 4px 24px #1f6bff}
+.banner p{margin:12px 0 0;color:#cfe6ff;max-width:46ch}
+.badge{position:absolute;top:18px;right:18px;background:#000a;border:1px solid var(--p);color:var(--p);padding:4px 12px;border-radius:99px;font-size:13px}
+.notice{background:#000;border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.pill{align-self:flex-start;background:var(--p);color:#021226;font-weight:700;padding:6px 18px;border-radius:99px}
+.notice .box{border:1px solid #1b3a6b;border-radius:8px;padding:12px;font-size:15px;flex:1}
+.notice .box div{margin-bottom:4px}
+.notice .meta{display:flex;justify-content:space-between;color:var(--mut);font-size:13px;margin-top:8px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.tile{border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0a2a73,#07101f);transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-3px);border-color:var(--p)}
+.tile svg{width:44px;height:44px;flex:none;stroke:var(--tx);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tile b{display:block;font-size:20px;line-height:1.2}
+.tile span{color:var(--p);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.prod{background:var(--card);border:1px solid #14305a;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{height:120px;display:grid;place-items:center;font-size:34px;font-weight:800;font-style:italic}
+.prod:nth-child(1) .thumb{background:linear-gradient(135deg,#1f6bff,#0a2a73)}
+.prod:nth-child(2) .thumb{background:linear-gradient(135deg,#2fb5ff,#0a3a66)}
+.prod:nth-child(3) .thumb{background:linear-gradient(135deg,#3d6bff,#0a1f66)}
+.prod:nth-child(4) .thumb{background:linear-gradient(135deg,#5a8cff,#061a45)}
+.prod .in{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod h3{margin:0;font-size:17px}
+.prod .d{color:var(--mut);font-size:14px;flex:1}
+.prod .row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.price{font-weight:800;font-size:20px;color:var(--p)}
+.buy{background:var(--p2);border:0;color:#fff;font:inherit;font-weight:700;padding:7px 16px;border-radius:6px;cursor:pointer}
+.buy:hover{background:var(--p);color:#021226}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{border-left:3px solid var(--p2);padding:4px 16px}
+.step b{display:block;font-size:18px}
+.step span{color:var(--mut)}
+footer{margin-top:48px;border-top:1px solid #12274a;padding:24px 0;color:var(--mut);font-size:14px;text-align:center}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+.banner,.tile{overflow:hidden}
+.banner::after,.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,#ffffff22 0%,#ffffff06 34%,transparent 35%),linear-gradient(180deg,#ffffff14,transparent 45%);pointer-events:none}
+.banner{box-shadow:0 0 40px #1f6bff33,inset 0 1px 0 #ffffff40}
+.tile{position:relative;box-shadow:0 0 18px #1f6bff22,inset 0 1px 0 #ffffff30}
+.prod{box-shadow:inset 0 1px 0 #ffffff1a}
+@media(max-width:860px){.top{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}}
+@media(max-width:480px){.tiles{grid-template-columns:1fr}.banner{padding:20px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header>
+ <div class="wrap">
+  <a class="logo" href="#home" aria-label="TR SHOP">TR</a>
+  <nav aria-label="เมนูหลัก">
+   <a class="on" href="#home">หน้าหลัก</a><a href="#topup">เติมเงิน</a><a href="#shop">ร้านค้า</a><a href="#order">สั่งซื้อ</a><a href="#spin">เกมสุ่ม</a><a href="#points">แลกแต้ม</a><a href="#contact">ติดต่อเรา</a>
+  </nav>
+  <a class="login" href="#login">ล็อกอิน / สมัครสมาชิก</a>
+ </div>
+</header>
+
+<main class="wrap" id="home">
+ <h2>โปรโมชั่นและข่าวสาร</h2>
+ <p class="sub">Promotion &amp; News</p>
+ <div class="top">
+  <section class="banner" aria-label="แบนเนอร์โปรโมชั่น">
+   <span class="badge">โปรใหม่ประจำสัปดาห์</span>
+   <h1>WELCOME TO<br>TR SHOP</h1>
+   <p>เติมเกมถูกลิขสิทธิ์ ส่งไว ระบบอัตโนมัติ บริการ 24 ชั่วโมง</p>
+  </section>
+  <aside class="notice">
+   <span class="pill">ประกาศจากทางร้าน</span>
+   <div class="box">
+    <div>พบปัญหาด้านใด ติดต่อได้ที่นี่</div>
+    <div>TIKTOK: ชื่อร้านของคุณ</div>
+    <div>DISCORD: ชื่อร้านของคุณ</div>
+    <div class="meta"><span>อัปเดตล่าสุด</span><span>17/11/2026</span></div>
+   </div>
+  </aside>
+ </div>
+
+ <div class="tiles" id="topup">
+  <a class="tile" href="#shop"><svg viewBox="0 0 48 48"><path d="M8 18h32l-4 20H12L8 18z"/><path d="M16 18l6-10M32 18l-6-10"/></svg><div><b>เลือกดูสินค้า</b><span>ดูสินค้าทั้งหมด</span></div></a>
+  <a class="tile" href="#topup"><svg viewBox="0 0 48 48"><rect x="10" y="6" width="28" height="36" rx="4"/><path d="M24 16v14M28 19h-6a3 3 0 000 6h4a3 3 0 010 6h-7"/></svg><div><b>เติมเงิน</b><span>เติมเครดิตเข้าบัญชี</span></div></a>
+  <a class="tile" href="#order"><svg viewBox="0 0 48 48"><path d="M10 6h28v36l-5-3-5 3-4-3-4 3-5-3-5 3V6z"/><path d="M17 16h14M17 24h14M17 32h8"/></svg><div><b>ประวัติการสั่งซื้อ</b><span>ตรวจสอบรายการ</span></div></a>
+  <a class="tile" href="#contact"><svg viewBox="0 0 48 48"><path d="M8 28v-4a16 16 0 0132 0v4"/><rect x="6" y="26" width="8" height="12" rx="3"/><rect x="34" y="26" width="8" height="12" rx="3"/><path d="M38 38c0 4-6 5-12 5"/></svg><div><b>ติดต่อสอบถาม</b><span>ทีมงานตอบไว</span></div></a>
+ </div>
+
+ <h2 id="shop">สินค้าแนะนำ</h2>
+ <p class="sub">ตัวอย่างสินค้า – แก้ชื่อและราคาได้ตามร้านของคุณ</p>
+ <div class="grid">
+  <article class="prod"><div class="thumb">100</div><div class="in"><h3>เพชร 100</h3><div class="d">เติมผ่าน ID ผู้เล่น ได้รับภายในไม่กี่นาที</div><div class="row"><span class="price">฿35</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod"><div class="thumb">310</div><div class="in"><h3>เพชร 310</h3><div class="d">แพ็กยอดนิยม คุ้มกว่าเติมในเกม</div><div class="row"><span class="price">฿99</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod"><div class="thumb">PASS</div><div class="in"><h3>บัตรสมาชิกรายเดือน</h3><div class="d">รับเพชรต่อเนื่องทุกวันตลอด 30 วัน</div><div class="row"><span class="price">฿129</span><button class="buy">สั่งซื้อ</button></div></div></article>
+  <article class="prod"><div class="thumb">1060</div><div class="in"><h3>เพชร 1,060</h3><div class="d">แพ็กใหญ่ เหมาะกับสายเก็บสกิน</div><div class="row"><span class="price">฿329</span><button class="buy">สั่งซื้อ</button></div></div></article>
+ </div>
+
+ <h2 id="order">สั่งซื้อง่ายใน 3 ขั้นตอน</h2>
+ <p class="sub">ไม่ต้องรอแอดมิน ระบบทำงานอัตโนมัติ</p>
+ <div class="steps">
+  <div class="step"><b>1. เติมเครดิต</b><span>โอนผ่าน QR แล้วยอดเข้าบัญชีทันที</span></div>
+  <div class="step"><b>2. เลือกสินค้า</b><span>กดสั่งซื้อและกรอก ID ผู้เล่น</span></div>
+  <div class="step"><b>3. รับของ</b><span>ดูสถานะได้ในหน้าประวัติการสั่งซื้อ</span></div>
+ </div>
+</main>
+
+<footer id="contact"><div class="wrap">TR SHOP · เทมเพลตดีไซน์ตัวอย่าง · ติดต่อ LINE: @yourshop</div></footer>
+<script>
+(function(){
+var c=document.getElementById('fx'),x=c.getContext('2d');
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var W,H,bolts=[];
+function size(){var d=devicePixelRatio||1;W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0)}
+size();addEventListener('resize',size);
+function bolt(x0,y0,x1,y1,spread,out){var pts=[[x0,y0]],n=14;for(var i=1;i<n;i++){var t=i/n;pts.push([x0+(x1-x0)*t+(Math.random()-.5)*spread,y0+(y1-y0)*t+Math.random()*10])}pts.push([x1,y1]);out.push(pts);return pts}
+function strike(){var out=[],sx=Math.random()*W,ex=sx+(Math.random()-.5)*W*.3,ey=H*(.45+Math.random()*.45);
+var main=bolt(sx,-10,ex,ey,70,out);
+for(var k=0;k<3;k++){var p=main[3+Math.floor(Math.random()*8)];bolt(p[0],p[1],p[0]+(Math.random()-.5)*260,p[1]+120+Math.random()*160,40,out)}
+bolts.push({segs:out,life:1})}
+function frame(){x.clearRect(0,0,W,H);
+bolts=bolts.filter(function(b){return b.life>0});
+bolts.forEach(function(b){var a=b.life;
+x.fillStyle='rgba(40,110,255,'+(a*a*.08)+')';x.fillRect(0,0,W,H);
+x.lineJoin='round';
+b.segs.forEach(function(pts,i){
+x.beginPath();pts.forEach(function(p,j){j?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});
+x.shadowColor='#2f9bff';x.shadowBlur=24;x.strokeStyle='rgba(120,190,255,'+a*.5+')';x.lineWidth=i?2:5;x.stroke();
+x.shadowBlur=0;x.strokeStyle='rgba(235,248,255,'+a+')';x.lineWidth=i?1:2;x.stroke()});
+b.life-=.045});
+requestAnimationFrame(frame)}
+function loop(){strike();if(Math.random()<.4)setTimeout(strike,120);setTimeout(loop,2500+Math.random()*3500)}
+if(!reduce){setTimeout(loop,800);frame()}
+})();
+</script>
+</body>
+</html>
