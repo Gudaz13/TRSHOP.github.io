@@ -6,6 +6,7 @@
 <title>TR SHOP – เทมเพลตหน้าร้านเกมเมอร์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--bg:#010309;--bg2:#07101f;--card:#060d1a;--line:#1f5fbf;--p:#4db8ff;--p2:#1f6bff;--tx:#eaf4ff;--mut:#8fa8c7;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -23,16 +24,26 @@ nav::-webkit-scrollbar{display:none}
 nav a{padding:6px 14px;border-radius:8px;color:var(--p);font-weight:500;white-space:nowrap}
 nav a.on{background:var(--p);color:#021226}
 nav a:hover:not(.on){background:#ffffff12}
-.login{border:1px solid var(--p);color:var(--p);padding:7px 16px;border-radius:6px;white-space:nowrap;font-weight:500}
+.login{border:1px solid var(--p);color:var(--p);background:transparent;padding:7px 16px;border-radius:6px;white-space:nowrap;font-weight:500;font-family:inherit;font-size:15px;cursor:pointer;transition:.15s}
 .login:hover{background:var(--p);color:#021226}
+.user-box{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--p);white-space:nowrap}
+.logout-btn{background:#ff4d4d22;border:1px solid #ff4d4d;color:#ff8080;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px}
+.logout-btn:hover{background:#ff4d4d;color:#fff}
+
 h2{margin:36px 0 4px;font-size:28px;font-weight:800;line-height:1.2}
 .sub{color:var(--p);margin:0 0 16px;font-weight:500}
 .top{display:grid;grid-template-columns:1fr 330px;gap:20px}
-.banner{position:relative;border-radius:10px;border:1px solid var(--line);overflow:hidden;min-height:290px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;background:
-linear-gradient(135deg,#0a2a73cc,#03060fcc),repeating-linear-gradient(-30deg,#ffffff08 0 14px,transparent 14px 28px),linear-gradient(120deg,#0d3fa8,#020a1f)}
+
+/* แบนเนอร์ใหม่: โลโก้ TR ด้านหลัง + ตัวละคร Free Fire ฝั่งขวา */
+.banner{position:relative;border-radius:10px;border:1px solid var(--line);overflow:hidden;min-height:290px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+background:linear-gradient(90deg,#03060ff2 0%,#0a2a73cc 55%,#0d3fa844 100%),repeating-linear-gradient(-30deg,#ffffff08 0 14px,transparent 14px 28px),linear-gradient(120deg,#0d3fa8,#020a1f)}
+.banner-watermark{position:absolute;top:50%;left:38%;transform:translate(-50%,-50%) rotate(-10deg);font-size:150px;font-weight:800;font-style:italic;color:rgba(77,184,255,0.08);pointer-events:none;user-select:none;z-index:0}
+.banner-char{position:absolute;right:10px;bottom:0;height:95%;max-width:55%;object-fit:contain;object-position:bottom right;z-index:1;pointer-events:none;filter:drop-shadow(-8px 0 16px rgba(0,0,0,0.75))}
+.banner h1,.banner p,.banner .badge{position:relative;z-index:2}
 .banner h1{margin:0;font-size:clamp(34px,6vw,60px);line-height:1;font-weight:800;font-style:italic;letter-spacing:-.02em;text-shadow:0 4px 24px #1f6bff}
-.banner p{margin:12px 0 0;color:#cfe6ff;max-width:46ch}
-.badge{position:absolute;top:18px;right:18px;background:#000a;border:1px solid var(--p);color:var(--p);padding:4px 12px;border-radius:99px;font-size:13px}
+.banner p{margin:12px 0 0;color:#cfe6ff;max-width:34ch}
+.badge{position:absolute;top:18px;right:18px;background:#000c;border:1px solid var(--p);color:var(--p);padding:4px 12px;border-radius:99px;font-size:13px}
+
 .notice{background:#000;border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .pill{align-self:flex-start;background:var(--p);color:#021226;font-weight:700;padding:6px 18px;border-radius:99px}
 .notice .box{border:1px solid #1b3a6b;border-radius:8px;padding:12px;font-size:15px;flex:1}
@@ -70,20 +81,42 @@ main,footer{position:relative;z-index:1}
 .banner{box-shadow:0 0 40px #1f6bff33,inset 0 1px 0 #ffffff40}
 .tile{position:relative;box-shadow:0 0 18px #1f6bff22,inset 0 1px 0 #ffffff30}
 .prod{box-shadow:inset 0 1px 0 #ffffff1a}
+
+/* Modal ป๊อปอัปล็อกอิน / สมัครสมาชิก */
+.modal-bg{position:fixed;inset:0;background:#000000cc;backdrop-filter:blur(4px);display:none;place-items:center;z-index:50;padding:16px}
+.modal-bg.show{display:grid}
+.modal{background:var(--card);border:1px solid var(--line);border-radius:12px;width:100%;max-width:380px;padding:24px;box-shadow:0 0 40px #1f6bff44;position:relative}
+.modal h3{margin:0 0 6px;font-size:22px;color:var(--tx)}
+.modal p{margin:0 0 18px;font-size:14px;color:var(--mut)}
+.modal input{width:100%;padding:10px 12px;margin-bottom:12px;border-radius:8px;border:1px solid #1b3a6b;background:#02060f;color:#fff;font-family:inherit;font-size:15px}
+.modal input:focus{border-color:var(--p);outline:none}
+.modal-btns{display:flex;gap:10px;margin-top:6px}
+.modal-btns button{flex:1;padding:10px;border-radius:8px;border:0;font-family:inherit;font-weight:700;cursor:pointer;font-size:15px}
+.btn-primary{background:var(--p2);color:#fff}
+.btn-primary:hover{background:var(--p);color:#021226}
+.btn-sec{background:#12274a;color:var(--p)}
+.btn-sec:hover{background:#1b3a6b}
+.close-modal{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer}
+.close-modal:hover{color:#fff}
+
 @media(max-width:860px){.top{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}}
-@media(max-width:480px){.tiles{grid-template-columns:1fr}.banner{padding:20px}}
+@media(max-width:480px){.tiles{grid-template-columns:1fr}.banner{padding:20px}.banner-char{height:75%;opacity:.85}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <canvas id="fx" aria-hidden="true"></canvas>
+
 <header>
  <div class="wrap">
   <a class="logo" href="#home" aria-label="TR SHOP">TR</a>
   <nav aria-label="เมนูหลัก">
    <a class="on" href="#home">หน้าหลัก</a><a href="#topup">เติมเงิน</a><a href="#shop">ร้านค้า</a><a href="#order">สั่งซื้อ</a><a href="#spin">เกมสุ่ม</a><a href="#points">แลกแต้ม</a><a href="#contact">ติดต่อเรา</a>
   </nav>
-  <a class="login" href="#login">ล็อกอิน / สมัครสมาชิก</a>
+  <!-- พื้นที่ปุ่มล็อกอิน / แสดงชื่อสมาชิก -->
+  <div id="auth-area">
+    <button class="login" onclick="openAuthModal()">ล็อกอิน / สมัครสมาชิก</button>
+  </div>
  </div>
 </header>
 
@@ -92,6 +125,11 @@ main,footer{position:relative;z-index:1}
  <p class="sub">Promotion &amp; News</p>
  <div class="top">
   <section class="banner" aria-label="แบนเนอร์โปรโมชั่น">
+   <!-- โลโก้ TR ลายน้ำด้านหลัง -->
+   <div class="banner-watermark">TR</div>
+   <!-- รูปตัวละคร Free Fire ฝั่งขวา (นำไฟล์ ff-char.png มาวางในโฟลเดอร์เดียวกัน) -->
+   <img src="ff-char.png" alt="" class="banner-char" onerror="this.style.display='none'">
+
    <span class="badge">โปรใหม่ประจำสัปดาห์</span>
    <h1>WELCOME TO<br>TR SHOP</h1>
    <p>เติมเกมถูกลิขสิทธิ์ ส่งไว ระบบอัตโนมัติ บริการ 24 ชั่วโมง</p>
@@ -133,6 +171,23 @@ main,footer{position:relative;z-index:1}
 </main>
 
 <footer id="contact"><div class="wrap">TR SHOP · เทมเพลตดีไซน์ตัวอย่าง · ติดต่อ LINE: @yourshop</div></footer>
+
+<!-- หน้าต่างป๊อปอัป Login / Register -->
+<div class="modal-bg" id="authModal" onclick="if(event.target===this)closeAuthModal()">
+  <div class="modal">
+    <button class="close-modal" onclick="closeAuthModal()">&times;</button>
+    <h3>เข้าสู่ระบบ / สมัครสมาชิก</h3>
+    <p>เข้าสู่ระบบเพื่อสะสมแต้มและดูประวัติการสั่งซื้อ</p>
+    <input type="email" id="authEmail" placeholder="อีเมลของคุณ (เช่น test@gmail.com)">
+    <input type="password" id="authPass" placeholder="รหัสผ่าน (อย่างน้อย 6 ตัวอักษร)">
+    <div class="modal-btns">
+      <button class="btn-primary" onclick="handleSignIn()">เข้าสู่ระบบ</button>
+      <button class="btn-sec" onclick="handleSignUp()">สมัครสมาชิก</button>
+    </div>
+  </div>
+</div>
+
+<!-- สคริปต์เอฟเฟกต์สายฟ้าพื้นหลัง -->
 <script>
 (function(){
 var c=document.getElementById('fx'),x=c.getContext('2d');
@@ -159,6 +214,63 @@ requestAnimationFrame(frame)}
 function loop(){strike();if(Math.random()<.4)setTimeout(strike,120);setTimeout(loop,2500+Math.random()*3500)}
 if(!reduce){setTimeout(loop,800);frame()}
 })();
+</script>
+
+<!-- สคริปต์ระบบสมาชิก Supabase -->
+<script>
+  // ⚠️ ใส่ URL และ ANON KEY จากโปรเจกต์ Supabase ของคุณตรงนี้ ⚠️
+  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+  let sbClient = null;
+  if (SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  function openAuthModal() { document.getElementById('authModal').classList.add('show'); }
+  function closeAuthModal() { document.getElementById('authModal').classList.remove('show'); }
+
+  async function handleSignUp() {
+    if (!sbClient) return alert('กรุณาใส่ SUPABASE_URL และ SUPABASE_ANON_KEY ในโค้ดก่อนครับ');
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPass').value;
+    if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
+
+    const { error } = await sbClient.auth.signUp({ email, password });
+    if (error) alert('สมัครไม่สำเร็จ: ' + error.message);
+    else { alert('สมัครสมาชิกสำเร็จ!'); closeAuthModal(); checkSession(); }
+  }
+
+  async function handleSignIn() {
+    if (!sbClient) return alert('กรุณาใส่ SUPABASE_URL และ SUPABASE_ANON_KEY ในโค้ดก่อนครับ');
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPass').value;
+    if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
+
+    const { error } = await sbClient.auth.signInWithPassword({ email, password });
+    if (error) alert('เข้าสู่ระบบไม่สำเร็จ: ' + error.message);
+    else { closeAuthModal(); checkSession(); }
+  }
+
+  async function handleSignOut() {
+    if (!sbClient) return;
+    await sbClient.auth.signOut();
+    checkSession();
+  }
+
+  async function checkSession() {
+    if (!sbClient) return;
+    const { data: { session } } = await sbClient.auth.getSession();
+    const area = document.getElementById('auth-area');
+    if (session) {
+      const name = session.user.email.split('@')[0];
+      area.innerHTML = `<div class="user-box"><span>👤 ${name}</span><button class="logout-btn" onclick="handleSignOut()">ออก</button></div>`;
+    } else {
+      area.innerHTML = `<button class="login" onclick="openAuthModal()">ล็อกอิน / สมัครสมาชิก</button>`;
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', checkSession);
 </script>
 </body>
 </html>
