@@ -33,13 +33,11 @@ body{
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
 
-/* แคนวาสสายฟ้าผ่าพื้นหลัง */
 #fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 header,main,footer{position:relative;z-index:2}
 
-/* Navbar สไตล์กระจกมืดคลีนๆ */
 header{
   background:rgba(2, 6, 18, 0.75);
   backdrop-filter:blur(16px);
@@ -49,7 +47,7 @@ header{
   top:0;
   z-index:50;
 }
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:62px}
 .logo{
   font-weight:800;
   font-size:19px;
@@ -58,12 +56,10 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
   background:linear-gradient(90deg,#fff,#38bdf8);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  display:flex;
-  align-items:center;
-  gap:8px;
+  flex:none;
 }
 nav{display:flex;gap:4px}
-nav a{padding:6px 12px;border-radius:8px;color:var(--mut);font-size:14px;font-weight:500;transition:.2s}
+nav a{padding:6px 12px;border-radius:8px;color:var(--mut);font-size:14px;font-weight:500;transition:.2s;white-space:nowrap}
 nav a.on, nav a:hover{background:rgba(56, 189, 248, 0.15);color:#fff;box-shadow:inset 0 0 0 1px rgba(56, 189, 248, 0.3)}
 .login{
   border:1px solid var(--line-bright);
@@ -72,23 +68,22 @@ nav a.on, nav a:hover{background:rgba(56, 189, 248, 0.15);color:#fff;box-shadow:
   backdrop-filter:blur(8px);
   padding:6px 14px;
   border-radius:8px;
-  font-size:14px;
+  font-size:13.5px;
   font-weight:500;
   cursor:pointer;
   transition:.2s;
-  box-shadow:0 0 15px rgba(56, 189, 248, 0.15);
+  white-space:nowrap;
 }
-.login:hover{background:var(--p);color:#020617;box-shadow:0 0 20px rgba(56, 189, 248, 0.5)}
-.user-box{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--p)}
-.logout-btn{background:rgba(239, 68, 68, 0.15);border:1px solid rgba(239, 68, 68, 0.5);color:#fca5a5;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px}
+.login:hover{background:var(--p);color:#020617}
+.user-box{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--p);flex-wrap:wrap;justify-content:flex-end}
+.bal-pill{background:rgba(56,189,248,0.14);border:1px solid var(--line);color:#e0f2fe;padding:3px 9px;border-radius:99px;font-weight:600}
+.logout-btn{background:rgba(239, 68, 68, 0.15);border:1px solid rgba(239, 68, 68, 0.5);color:#fca5a5;padding:4px 9px;border-radius:6px;cursor:pointer;font-size:12px}
 .logout-btn:hover{background:#ef4444;color:#fff}
 
-/* Main Layout สมส่วนไม่บาน */
 main{padding:28px 0 60px}
 h2{margin:28px 0 4px;font-size:21px;font-weight:700}
 .sub{color:var(--mut);margin:0 0 16px;font-size:13.5px}
 
-/* Glass Card Effect (พื้นน้ำเงินดำ เงากระจก) */
 .glass{
   background:var(--glass);
   backdrop-filter:blur(14px);
@@ -98,7 +93,6 @@ h2{margin:28px 0 4px;font-size:21px;font-weight:700}
   position:relative;
   overflow:hidden;
 }
-/* แสงสะท้อนเงากระจกเฉียง */
 .glass::after{
   content:"";
   position:absolute;
@@ -107,7 +101,6 @@ h2{margin:28px 0 4px;font-size:21px;font-weight:700}
   pointer-events:none;
 }
 
-/* แบนเนอร์หลัก */
 .banner{
   background:linear-gradient(105deg, rgba(4, 10, 28, 0.9) 0%, rgba(12, 34, 84, 0.7) 60%, rgba(2, 132, 199, 0.35) 100%);
   border-radius:14px;
@@ -142,14 +135,7 @@ h2{margin:28px 0 4px;font-size:21px;font-weight:700}
   filter:drop-shadow(-6px 4px 16px rgba(0, 0, 0, 0.85));
 }
 .banner .badge, .banner h1, .banner p{position:relative;z-index:2}
-.banner h1{
-  margin:0 0 6px;
-  font-size:32px;
-  font-weight:800;
-  font-style:italic;
-  letter-spacing:-0.5px;
-  text-shadow:0 0 24px rgba(56, 189, 248, 0.6);
-}
+.banner h1{margin:0 0 6px;font-size:32px;font-weight:800;font-style:italic;letter-spacing:-0.5px;text-shadow:0 0 24px rgba(56, 189, 248, 0.6)}
 .banner p{margin:0;color:#cbd5e1;font-size:14.5px;max-width:34ch}
 .badge{
   align-self:flex-start;
@@ -161,38 +147,40 @@ h2{margin:28px 0 4px;font-size:21px;font-weight:700}
   font-size:11.5px;
   margin-bottom:10px;
   font-weight:600;
-  box-shadow:0 0 12px rgba(56, 189, 248, 0.3);
 }
 
-/* เมนูด่วน 4 ช่อง */
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 .tile{border-radius:12px;padding:15px;display:flex;align-items:center;gap:12px;transition:.2s}
-.tile:hover{background:var(--glass-hover);border-color:var(--line-bright);transform:translateY(-2px);box-shadow:0 8px 24px rgba(2, 132, 199, 0.25), inset 0 1px 0 rgba(255,255,255,0.25)}
-.tile svg{width:24px;height:24px;stroke:var(--p);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;filter:drop-shadow(0 0 6px rgba(56, 189, 248, 0.5))}
+.tile:hover{background:var(--glass-hover);border-color:var(--line-bright);transform:translateY(-2px)}
+.tile svg{width:24px;height:24px;stroke:var(--p);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .tile b{display:block;font-size:14px;font-weight:600}
 .tile span{color:var(--mut);font-size:12px}
 
-/* สินค้า Grid */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .prod{border-radius:12px;display:flex;flex-direction:column;transition:.2s}
 .prod:hover{background:var(--glass-hover);border-color:var(--line-bright);transform:translateY(-2px)}
 .thumb{
-  height:96px;
-  background:linear-gradient(135deg, rgba(29, 78, 216, 0.45), rgba(2, 6, 23, 0.8));
+  height:128px;
+  background:linear-gradient(135deg, rgba(29, 78, 216, 0.45), rgba(2, 6, 23, 0.85));
   border-bottom:1px solid var(--line);
   display:grid;
   place-items:center;
   font-weight:800;
   font-style:italic;
-  font-size:22px;
+  font-size:24px;
   color:#bae6fd;
-  text-shadow:0 0 14px rgba(56, 189, 248, 0.5);
+  position:relative;
+  overflow:hidden;
 }
-.prod .in{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}
-.prod h3{margin:0;font-size:15px;font-weight:600}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb-fallback{position:absolute;inset:0;display:grid;place-items:center;z-index:1}
+.prod .in{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod h3{margin:0;font-size:16px;font-weight:700}
 .prod .d{color:var(--mut);font-size:12.5px;flex:1}
+.plan-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.plan-tag{font-size:11px;padding:2px 7px;border-radius:6px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.22);color:#bae6fd}
 .prod .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.price{font-weight:700;font-size:16px;color:var(--p)}
+.price{font-weight:700;font-size:15px;color:var(--p)}
 .buy{
   background:linear-gradient(135deg, #0284c7, #2563eb);
   border:1px solid rgba(255,255,255,0.2);
@@ -204,46 +192,55 @@ h2{margin:28px 0 4px;font-size:21px;font-weight:700}
   border-radius:7px;
   cursor:pointer;
   transition:.2s;
-  box-shadow:0 0 12px rgba(37, 99, 235, 0.4);
+  position:relative;
+  z-index:2;
 }
-.buy:hover{background:var(--p);color:#020617;box-shadow:0 0 16px rgba(56, 189, 248, 0.7)}
+.buy:hover{background:var(--p);color:#020617}
 
-/* ขั้นตอนการสั่งซื้อ */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
 .step{border-radius:12px;padding:16px}
 .step b{display:block;font-size:14.5px;margin-bottom:4px;color:#e0f2fe}
 .step span{color:var(--mut);font-size:13px}
 
+.orders-box{border-radius:12px;padding:16px;margin-top:14px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(56,189,248,0.14);white-space:nowrap}
+th{color:var(--p);font-weight:600}
+.empty-msg{color:var(--mut);font-size:13.5px;margin:0}
+
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-size:13px;text-align:center;background:rgba(2, 5, 14, 0.7);backdrop-filter:blur(10px)}
 
-/* Modal ล็อกอินสไตล์ Glass */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:none;place-items:center;z-index:100;padding:16px}
 .modal-bg.show{display:grid}
 .modal{
-  background:rgba(8, 17, 38, 0.88);
+  background:rgba(8, 17, 38, 0.94);
   backdrop-filter:blur(20px);
   border:1px solid var(--line-bright);
   box-shadow:0 0 40px rgba(2, 132, 199, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
   border-radius:14px;
   width:100%;
-  max-width:360px;
+  max-width:390px;
   padding:24px;
   position:relative;
 }
 .modal h3{margin:0 0 4px;font-size:20px}
-.modal p{margin:0 0 16px;font-size:13px;color:var(--mut)}
-.modal input{width:100%;padding:10px 12px;margin-bottom:12px;border-radius:8px;border:1px solid var(--line);background:rgba(2, 6, 23, 0.8);color:#fff;font-family:inherit;font-size:14px}
-.modal input:focus{border-color:var(--p);outline:none;box-shadow:0 0 10px rgba(56, 189, 248, 0.25)}
-.modal-btns{display:flex;gap:8px}
+.modal p{margin:0 0 14px;font-size:13px;color:var(--mut)}
+.modal label{display:block;font-size:12.5px;color:#bae6fd;margin-bottom:6px}
+.modal input, .modal select{
+  width:100%;padding:10px 12px;margin-bottom:12px;border-radius:8px;
+  border:1px solid var(--line);background:rgba(2, 6, 23, 0.9);color:#fff;font-family:inherit;font-size:14px
+}
+.modal input:focus, .modal select:focus{border-color:var(--p);outline:none}
+.modal-btns{display:flex;gap:8px;margin-top:4px}
 .modal-btns button{flex:1;padding:9px;border-radius:8px;border:0;font:inherit;font-weight:600;cursor:pointer;font-size:14px;transition:.2s}
 .btn-primary{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff}
 .btn-primary:hover{background:var(--p);color:#020617}
 .btn-sec{background:rgba(30, 41, 59, 0.8);border:1px solid var(--line);color:#fff}
-.btn-sec:hover{border-color:var(--p)}
 .close-modal{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--mut);font-size:20px;cursor:pointer}
-.close-modal:hover{color:#fff}
 
-/* Responsive มือถือสมส่วน */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:768px){
   .wrap{padding:0 14px}
   .tiles{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -260,14 +257,13 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 </head>
 <body>
 
-<!-- แคนวาสแอนิเมชันสายฟ้าผ่า -->
 <canvas id="fx" aria-hidden="true"></canvas>
 
 <header>
  <div class="wrap">
   <a class="logo" href="#home">TRSHOP</a>
   <nav>
-   <a class="on" href="#home">หน้าหลัก</a><a href="#shop">สินค้า</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
+   <a class="on" href="#home">หน้าหลัก</a><a href="#shop">สินค้า</a><a href="#history-sec">ประวัติ</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
   </nav>
   <div id="auth-area">
     <button class="login" onclick="openAuthModal()">เข้าสู่ระบบ</button>
@@ -277,44 +273,44 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 
 <main class="wrap" id="home">
  <section class="banner glass">
-  <!-- โลโก้ TR.jpg ด้านหลัง -->
-  <img src="TR.png" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
-  <!-- ตัวละคร Free Fire ฝั่งขวา -->
-  <img src="ff-char.png" alt="Free Fire Character" class="banner-char" onerror="this.style.display='none'">
+  <img src="TR.jpg" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
+  <img src="ff-removebg-preview.png" alt="Free Fire Character" class="banner-char" onerror="this.style.display='none'">
 
   <span class="badge">SYSTEM ONLINE</span>
   <h1>TRSHOP OFFICIAL</h1>
-  <p>บริการเจำหน่ายโปรและพร็อกซี่ต่างๆ ระบบอัตโนมัติ รวดเร็ว 24 ชั่วโมง</p>
+  <p>บริการเติมเกมระบบอัตโนมัติ รวดเร็ว ปลอดภัย 24 ชั่วโมง</p>
  </section>
 
  <div class="tiles" id="topup">
   <a class="tile glass" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>ร้านค้า</b><span>ดูสินค้าทั้งหมด</span></div></a>
-  <a class="tile glass" href="#topup"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเงิน</b><span>เติมเครดิตออโต้</span></div></a>
-  <a class="tile glass" href="#order"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติ</b><span>เช็คสถานะคำสั่งซื้อ</span></div></a>
+  <a class="tile glass" href="#topup" onclick="alert('ติดต่อแอดมินเพื่อเติมเครดิตเข้าบัญชี หรือปรับยอดในตาราง profiles ได้เลยครับ')"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเงิน</b><span>เติมเครดิตออโต้</span></div></a>
+  <a class="tile glass" href="#history-sec"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติ</b><span>เช็คสถานะคำสั่งซื้อ</span></div></a>
   <a class="tile glass" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div><b>ติดต่อเรา</b><span>แอดมินดูแล 24 ชม.</span></div></a>
  </div>
 
  <h2 id="shop">สินค้าแนะนำ</h2>
- <p class="sub">เลือกโปรเหนียวๆ ตามใจชอบ</p>
- <div class="grid">
-  <article class="prod glass"><div class="thumb">RUIZEN WIRE</div><div class="in"><h3>Ruizen wire</h3><div class="d">ราคาสินค้า</div><div class="row"><span class="price">฿10</span><button class="buy">สั่งซื้อ</button></div></div></article>
-  <article class="prod glass"><div class="thumb">DRIP WIRE</div><div class="in"><h3>Drip wire</h3><div class="d">ราคาสินค้า</div><div class="row"><span class="price">฿25</span><button class="buy">สั่งซื้อ</button></div></div></article>
-  <article class="prod glass"><div class="thumb">AIMHACK</div><div class="in"><h3>Aimhack wire</h3><div class="d">ราคาสินค้า</div><div class="row"><span class="price">฿25</span><button class="buy">สั่งซื้อ</button></div></div></article>
-  <article class="prod glass"><div class="thumb">  PHANTOM   WIRE</div><div class="in"><h3>Phantom wire</h3><div class="d">ราคาสินค้า</div><div class="row"><span class="price">฿15</span><button class="buy">สั่งซื้อ</button></div></div></article>
+ <p class="sub">เลือกแพ็กเกจระยะเวลาที่ต้องการแล้วกดสั่งซื้อได้ทันที</p>
+ <div class="grid" id="product-grid">
+  <article class="prod glass"><div class="thumb">...</div><div class="in"><h3>กำลังโหลดสินค้า...</h3><div class="d">กรุณารอสักครู่</div><div class="row"><span class="price">฿0</span><button class="buy" disabled>สั่งซื้อ</button></div></div></article>
+ </div>
+
+ <h2 id="history-sec">ประวัติการสั่งซื้อ</h2>
+ <p class="sub">รายการคำสั่งซื้อล่าสุดของบัญชีคุณ</p>
+ <div class="orders-box glass" id="orders-container">
+  <p class="empty-msg">เข้าสู่ระบบเพื่อดูประวัติการสั่งซื้อของคุณ</p>
  </div>
 
  <h2 id="order">ขั้นตอนการใช้งาน</h2>
  <p class="sub">ใช้งานง่ายผ่านระบบอัตโนมัติ</p>
  <div class="steps">
-  <div class="step glass"><b>1. เติมเงินเข้าเว็บ</b><span>สแกน QR โอนเงินยอดเข้าทันที</span></div>
-  <div class="step glass"><b>2. เลือกสินค้า</b><span>เลือกโปรที่ถูกใจ แล้วกดสั่งซื้อ</span></div>
-  <div class="step glass"><b>3. รอรับของ</b><span>ระบบจัดส่งให้อัตโนมัติในประวัติการสั่งซื้อ</span></div>
+  <div class="step glass"><b>1. เติมเงินเข้าเว็บ</b><span>ยอดเครดิตอัปเดตในบัญชีสมาชิก</span></div>
+  <div class="step glass"><b>2. เลือกแพ็กเกจ & กรอก UID</b><span>เลือกชั่วโมงหรือจำนวนวันแล้วกดสั่งซื้อ</span></div>
+  <div class="step glass"><b>3. รอรับของ</b><span>ระบบบันทึกคำสั่งซื้อและหักเครดิตทันที</span></div>
  </div>
 </main>
 
 <footer id="contact"><div class="wrap">TRSHOP · Official Store</div></footer>
 
-<!-- Modal ล็อกอิน / สมัครสมาชิก -->
 <div class="modal-bg" id="authModal" onclick="if(event.target===this)closeAuthModal()">
   <div class="modal">
     <button class="close-modal" onclick="closeAuthModal()">&times;</button>
@@ -329,7 +325,22 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   </div>
 </div>
 
-<!-- สคริปต์แอนิเมชันสายฟ้าผ่า -->
+<div class="modal-bg" id="buyModal" onclick="if(event.target===this)closeBuyModal()">
+  <div class="modal">
+    <button class="close-modal" onclick="closeBuyModal()">&times;</button>
+    <h3 id="buyTitle">สั่งซื้อสินค้า</h3>
+    <p id="buyDesc"></p>
+    <label for="planSelect">เลือกแพ็กเกจระยะเวลา</label>
+    <select id="planSelect" onchange="updatePlanPrice()"></select>
+    <label for="playerUidInput">UID / ID ผู้เล่นในเกม</label>
+    <input type="text" id="playerUidInput" placeholder="กรอก UID ผู้เล่น">
+    <div class="modal-btns">
+      <button class="btn-primary" id="confirmBuyBtn" onclick="submitOrder()">ยืนยันการสั่งซื้อ</button>
+      <button class="btn-sec" onclick="closeBuyModal()">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   var c=document.getElementById('fx'),x=c.getContext('2d');
@@ -369,52 +380,242 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 })();
 </script>
 
-<!-- สคริปต์ Supabase เชื่อมต่อคีย์ของคุณเรียบร้อย -->
 <script>
   const SUPABASE_URL = 'https://csjyobjamxlaexdgfdot.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_h2Bnc07NAFkzdCaSBVtf6g_XeQXWJXN';
   const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+  let currentUser = null;
+  let selectedProduct = null;
+  let plansByProduct = {};
+
   function openAuthModal() { document.getElementById('authModal').classList.add('show'); }
   function closeAuthModal() { document.getElementById('authModal').classList.remove('show'); }
+
+  function updatePlanPrice() {
+    const sel = document.getElementById('planSelect');
+    const opt = sel.options[sel.selectedIndex];
+    if (!opt || !selectedProduct) return;
+    const price = Number(opt.dataset.price || selectedProduct.price);
+    document.getElementById('buyDesc').textContent = `${selectedProduct.description || ''} · ราคา ฿${price.toLocaleString()}`;
+  }
+
+  function openBuyModal(prod) {
+    if (!currentUser) {
+      alert('กรุณาเข้าสู่ระบบก่อนสั่งซื้อสินค้าครับ');
+      openAuthModal();
+      return;
+    }
+    selectedProduct = prod;
+    const plans = plansByProduct[prod.id] || [];
+    const sel = document.getElementById('planSelect');
+    sel.innerHTML = '';
+
+    if (plans.length) {
+      plans.forEach(pl => {
+        const o = document.createElement('option');
+        o.value = pl.id;
+        o.dataset.price = pl.price;
+        o.textContent = `${pl.label} — ฿${Number(pl.price).toLocaleString()}`;
+        sel.appendChild(o);
+      });
+    } else {
+      const o = document.createElement('option');
+      o.value = '';
+      o.dataset.price = prod.price;
+      o.textContent = `แพ็กเริ่มต้น — ฿${Number(prod.price).toLocaleString()}`;
+      sel.appendChild(o);
+    }
+
+    document.getElementById('buyTitle').textContent = 'สั่งซื้อ: ' + prod.name;
+    document.getElementById('playerUidInput').value = '';
+    updatePlanPrice();
+    document.getElementById('buyModal').classList.add('show');
+  }
+
+  function closeBuyModal() {
+    selectedProduct = null;
+    document.getElementById('buyModal').classList.remove('show');
+  }
 
   async function handleSignUp() {
     const email = document.getElementById('authEmail').value.trim();
     const password = document.getElementById('authPass').value;
     if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
-
     const { error } = await sbClient.auth.signUp({ email, password });
     if (error) alert('สมัครไม่สำเร็จ: ' + error.message);
-    else { alert('สมัครสมาชิก TRSHOP สำเร็จ!'); closeAuthModal(); checkSession(); }
+    else { alert('สมัครสมาชิก TRSHOP สำเร็จ!'); closeAuthModal(); await refreshAccount(); }
   }
 
   async function handleSignIn() {
     const email = document.getElementById('authEmail').value.trim();
     const password = document.getElementById('authPass').value;
     if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
-
     const { error } = await sbClient.auth.signInWithPassword({ email, password });
     if (error) alert('เข้าสู่ระบบไม่สำเร็จ: ' + error.message);
-    else { closeAuthModal(); checkSession(); }
+    else { closeAuthModal(); await refreshAccount(); }
   }
 
   async function handleSignOut() {
     await sbClient.auth.signOut();
-    checkSession();
+    await refreshAccount();
   }
 
-  async function checkSession() {
+  async function loadProducts() {
+    const grid = document.getElementById('product-grid');
+    const [{ data: prods, error: pErr }, { data: plans }] = await Promise.all([
+      sbClient.from('products').select('*').eq('is_active', true).order('id', { ascending: true }),
+      sbClient.from('product_plans').select('*').order('sort_order', { ascending: true })
+    ]);
+
+    if (pErr || !prods || !prods.length) {
+      grid.innerHTML = '<p class="empty-msg">ยังไม่มีรายการสินค้าในระบบ</p>';
+      return;
+    }
+
+    plansByProduct = {};
+    (plans || []).forEach(pl => {
+      if (!plansByProduct[pl.product_id]) plansByProduct[pl.product_id] = [];
+      plansByProduct[pl.product_id].push(pl);
+    });
+
+    grid.innerHTML = '';
+    prods.forEach(prod => {
+      const pList = plansByProduct[prod.id] || [];
+      const minPrice = pList.length ? Math.min(...pList.map(x => Number(x.price))) : Number(prod.price);
+      const tagsHtml = pList.map(x => `<span class="plan-tag">${x.label} ฿${Number(x.price)}</span>`).join('');
+      const imgPath = encodeURI(prod.image_url || '');
+
+      const card = document.createElement('article');
+      card.className = 'prod glass';
+      card.innerHTML = `
+        <div class="thumb">
+          <span class="thumb-fallback">${prod.code}</span>
+          ${prod.image_url ? `<img src="${imgPath}" alt="${prod.name}" onload="this.previousElementSibling.style.display='none'" onerror="this.remove()">` : ''}
+        </div>
+        <div class="in">
+          <h3>${prod.name}</h3>
+          <div class="d">${prod.description || ''}</div>
+          <div class="plan-tags">${tagsHtml}</div>
+          <div class="row">
+            <span class="price">เริ่มต้น ฿${minPrice.toLocaleString()}</span>
+            <button class="buy">สั่งซื้อ</button>
+          </div>
+        </div>`;
+      card.querySelector('.buy').addEventListener('click', () => openBuyModal(prod));
+      grid.appendChild(card);
+    });
+  }
+
+  async function loadOrders() {
+    const box = document.getElementById('orders-container');
+    if (!currentUser) {
+      box.innerHTML = '<p class="empty-msg">เข้าสู่ระบบเพื่อดูประวัติการสั่งซื้อของคุณ</p>';
+      return;
+    }
+
+    const { data, error } = await sbClient
+      .from('orders')
+      .select('*')
+      .eq('user_id', currentUser.id)
+      .order('created_at', { ascending: false })
+      .limit(15);
+
+    if (error) {
+      box.innerHTML = '<p class="empty-msg">โหลดประวัติไม่สำเร็จ</p>';
+      return;
+    }
+    if (!data || !data.length) {
+      box.innerHTML = '<p class="empty-msg">ยังไม่มีประวัติการสั่งซื้อ</p>';
+      return;
+    }
+
+    const rows = data.map(o => `
+      <tr>
+        <td>#${o.id}</td>
+        <td>${o.product_name}</td>
+        <td>${o.plan_label || '-'}</td>
+        <td>${o.player_uid}</td>
+        <td>฿${Number(o.price).toLocaleString()}</td>
+        <td>${o.status}</td>
+      </tr>
+    `).join('');
+
+    box.innerHTML = `
+      <table>
+        <thead><tr><th>เลขที่</th><th>สินค้า</th><th>แพ็กเกจ</th><th>UID</th><th>ราคา</th><th>สถานะ</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  async function refreshAccount() {
     const { data: { session } } = await sbClient.auth.getSession();
     const area = document.getElementById('auth-area');
-    if (session) {
-      const name = session.user.email.split('@')[0];
-      area.innerHTML = `<div class="user-box"><span>👤 ${name}</span><button class="logout-btn" onclick="handleSignOut()">ออก</button></div>`;
-    } else {
+    currentUser = session ? session.user : null;
+
+    if (!currentUser) {
       area.innerHTML = `<button class="login" onclick="openAuthModal()">เข้าสู่ระบบ</button>`;
+      await loadOrders();
+      return;
     }
+
+    let balance = 0;
+    const { data: prof } = await sbClient
+      .from('profiles')
+      .select('balance')
+      .eq('id', currentUser.id)
+      .single();
+    if (prof) balance = Number(prof.balance || 0);
+
+    const name = currentUser.email.split('@')[0];
+    area.innerHTML = `
+      <div class="user-box">
+        <span>👤 ${name}</span>
+        <span class="bal-pill">฿${balance.toLocaleString()}</span>
+        <button class="logout-btn" onclick="handleSignOut()">ออก</button>
+      </div>`;
+    await loadOrders();
   }
 
-  window.addEventListener('DOMContentLoaded', checkSession);
+  async function submitOrder() {
+    if (!selectedProduct) return;
+    const uid = document.getElementById('playerUidInput').value.trim();
+    if (!uid) return alert('กรุณากรอก UID ผู้เล่น');
+
+    const sel = document.getElementById('planSelect');
+    const planId = sel && sel.value ? Number(sel.value) : null;
+
+    const btn = document.getElementById('confirmBuyBtn');
+    btn.disabled = true;
+    btn.textContent = 'กำลังทำรายการ...';
+
+    const { data, error } = await sbClient.rpc('purchase_product', {
+      p_product_id: selectedProduct.id,
+      p_player_uid: uid,
+      p_plan_id: planId
+    });
+
+    btn.disabled = false;
+    btn.textContent = 'ยืนยันการสั่งซื้อ';
+
+    if (error) {
+      alert('ทำรายการไม่สำเร็จ: ' + error.message);
+      return;
+    }
+    if (!data || !data.ok) {
+      alert((data && data.message) || 'ไม่สามารถทำรายการได้');
+      return;
+    }
+
+    alert(data.message);
+    closeBuyModal();
+    await refreshAccount();
+  }
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    await loadProducts();
+    await refreshAccount();
+  });
 </script>
 </body>
 </html>
