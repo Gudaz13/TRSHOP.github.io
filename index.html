@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRSHOP – Official Store</title>
+<title>TRPROTECT – Official Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
   --bg:#02050e;
-  --glass:rgba(8, 18, 42, 0.55);
-  --glass-hover:rgba(14, 30, 68, 0.72);
+  --glass:rgba(8, 18, 42, 0.58);
+  --glass-hover:rgba(14, 30, 68, 0.76);
   --line:rgba(56, 189, 248, 0.25);
-  --line-bright:rgba(56, 189, 248, 0.6);
+  --line-bright:rgba(56, 189, 248, 0.65);
   --p:#38bdf8;
   --p2:#1d4ed8;
   --tx:#f1f5f9;
@@ -39,7 +39,7 @@ a{color:inherit;text-decoration:none}
 header,main,footer{position:relative;z-index:2}
 
 header{
-  background:rgba(2, 6, 18, 0.75);
+  background:rgba(2, 6, 18, 0.78);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line);
@@ -261,9 +261,9 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 
 <header>
  <div class="wrap">
-  <a class="logo" href="#home">TRSHOP</a>
+  <a class="logo" href="#home">TRPROTECT</a>
   <nav>
-   <a class="on" href="#home">หน้าหลัก</a><a href="#shop">รายการม็อด</a><a href="#history-sec">ประวัติ</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
+   <a class="on" href="#home">หน้าหลัก</a><a href="#shop">รายการสินค้า</a><a href="#history-sec">ประวัติ</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
   </nav>
   <div id="auth-area">
     <button class="login" onclick="openAuthModal()">เข้าสู่ระบบ</button>
@@ -276,23 +276,21 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   <img src="TR.jpg" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
   <img src="ff-removebg-preview.png" alt="Character" class="banner-char" onerror="this.style.display='none'">
 
-  <span class="badge">TRMODS OFFICIAL</span>
-  <h1>TRSHOP MODS</h1>
+  <span class="badge">TRPROTECT OFFICIAL</span>
+  <h1>TRPROTECT</h1>
   <p>ศูนย์รวมม็อดและตัวช่วยสายแกร่ง เลือกแพ็กเกจระยะเวลาได้ทันที ระบบอัตโนมัติ 24 ชม.</p>
  </section>
 
  <div class="tiles" id="topup">
-  <a class="tile glass" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>รายการม็อด</b><span>ดูสินค้าทั้งหมด</span></div></a>
+  <a class="tile glass" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>รายการสินค้า</b><span>ดูสินค้าทั้งหมด</span></div></a>
   <a class="tile glass" href="#topup" onclick="alert('ติดต่อแอดมินเพื่อเติมเครดิตเข้าบัญชี หรือปรับยอดในตาราง profiles ได้เลยครับ')"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเครดิต</b><span>เติมยอดเข้าบัญชี</span></div></a>
   <a class="tile glass" href="#history-sec"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติสั่งซื้อ</b><span>เช็คสถานะรายการ</span></div></a>
   <a class="tile glass" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div><b>ติดต่อแอดมิน</b><span>สอบถามหรือแจ้งปัญหา</span></div></a>
  </div>
 
- <h2 id="shop">สินค้าแนะนำ (TRMODS)</h2>
+ <h2 id="shop">สินค้าแนะนำ</h2>
  <p class="sub">เลือกแพ็กเกจชั่วโมงหรือจำนวนวันที่ต้องการแล้วกดสั่งซื้อได้ทันที</p>
- <div class="grid" id="product-grid">
-  <article class="prod glass"><div class="thumb">...</div><div class="in"><h3>กำลังโหลดรายการม็อด...</h3><div class="d">กรุณารอสักครู่</div><div class="row"><span class="price">฿0</span><button class="buy" disabled>สั่งซื้อ</button></div></div></article>
- </div>
+ <div class="grid" id="product-grid"></div>
 
  <h2 id="history-sec">ประวัติการสั่งซื้อ</h2>
  <p class="sub">รายการคำสั่งซื้อล่าสุดของบัญชีคุณ</p>
@@ -309,13 +307,13 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
  </div>
 </main>
 
-<footer id="contact"><div class="wrap">TRSHOP · Official Store</div></footer>
+<footer id="contact"><div class="wrap">TRPROTECT · Official Store</div></footer>
 
 <div class="modal-bg" id="authModal" onclick="if(event.target===this)closeAuthModal()">
   <div class="modal">
     <button class="close-modal" onclick="closeAuthModal()">&times;</button>
     <h3>เข้าสู่ระบบ</h3>
-    <p>เข้าสู่ระบบสมาชิก TRSHOP</p>
+    <p>เข้าสู่ระบบสมาชิก TRPROTECT</p>
     <input type="email" id="authEmail" placeholder="อีเมล">
     <input type="password" id="authPass" placeholder="รหัสผ่าน (6 ตัวอักษรขึ้นไป)">
     <div class="modal-btns">
@@ -385,9 +383,83 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   const SUPABASE_ANON_KEY = 'sb_publishable_h2Bnc07NAFkzdCaSBVtf6g_XeQXWJXN';
   const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+  const DEFAULT_PRODUCTS = [
+    {
+      id: 'rw',
+      code: 'RW',
+      name: 'RUIZEN WiRE',
+      description: 'ESP - MOCO · FAKE LAG · AIM POINT (ล็อคคอ) · FAST REVIVE (ชุบไว 1 วิ)',
+      price: 20,
+      image_url: 'TRMODS รายละเอียด/RUIZEN WIRE/RUIZEN WIRE.jpg',
+      plans: [
+        { id: 'rw-12h', label: '12 ชม.', price: 20 },
+        { id: 'rw-1d', label: '1 วัน', price: 35 },
+        { id: 'rw-3d', label: '3 วัน', price: 90 },
+        { id: 'rw-7d', label: '7 วัน', price: 140 },
+        { id: 'rw-15d', label: '15 วัน', price: 190 },
+        { id: 'rw-30d', label: '30 วัน', price: 350 }
+      ]
+    },
+    {
+      id: 'rz',
+      code: 'RZ',
+      name: 'REZZX CHEAT',
+      description: 'ESP - MOCO · FAKE LAG · AIM POINT (หัว/คอ/ตัว) · ฟังก์ชันเกรียนจัดเต็ม',
+      price: 15,
+      image_url: 'TRMODS รายละเอียด/REZZX/REZZX.jpg',
+      plans: [
+        { id: 'rz-1h', label: '1 ชม.', price: 15 },
+        { id: 'rz-3h', label: '3 ชม.', price: 20 }
+      ]
+    },
+    {
+      id: 'pm',
+      code: 'PM',
+      name: 'PETER MODS',
+      description: 'AIM BOT (ล็อคหัว 100%) · ESP (มองเส้น / กล่อง / เลือด)',
+      price: 20,
+      image_url: 'TRMODS รายละเอียด/PETER MODS/PETER MODS.jpg',
+      plans: [
+        { id: 'pm-12h', label: '12 ชม.', price: 20 },
+        { id: 'pm-1d', label: '1 วัน', price: 30 },
+        { id: 'pm-3d', label: '3 วัน', price: 80 },
+        { id: 'pm-7d', label: '7 วัน', price: 150 },
+        { id: 'pm-15d', label: '15 วัน', price: 275 },
+        { id: 'pm-30d', label: '30 วัน', price: 400 }
+      ]
+    },
+    {
+      id: 'ah',
+      code: 'AH',
+      name: 'AIMHACK',
+      description: 'ESP - MOCO · FAKE LAG · AIM POINT (หัว/คอ/ตัว) · FAST REVIVE (ชุบไว 1 วิ)',
+      price: 50,
+      image_url: 'TRMODS รายละเอียด/AIMHACK/AIMHACK.jpg',
+      plans: [
+        { id: 'ah-1d', label: '1 วัน', price: 50 },
+        { id: 'ah-3d', label: '3 วัน', price: 100 },
+        { id: 'ah-7d', label: '7 วัน', price: 200 },
+        { id: 'ah-15d', label: '15 วัน', price: 300 },
+        { id: 'ah-30d', label: '30 วัน', price: 450 }
+      ]
+    },
+    {
+      id: 'br',
+      code: 'BR',
+      name: 'BR MODS',
+      description: 'ล็อคหัว · กระสุนติดตาม · สไนล็อค (หัว/ลำตัว) · ปรับ FOV · มอง ESP (เส้น/Box)',
+      price: 40,
+      image_url: 'TRMODS รายละเอียด/BRMODS/BR.jpg',
+      plans: [
+        { id: 'br-1d', label: '1 วัน', price: 40 }
+      ]
+    }
+  ];
+
   let currentUser = null;
   let selectedProduct = null;
   let plansByProduct = {};
+  let usingDbProducts = false;
 
   function openAuthModal() { document.getElementById('authModal').classList.add('show'); }
   function closeAuthModal() { document.getElementById('authModal').classList.remove('show'); }
@@ -414,7 +486,8 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
     if (plans.length) {
       plans.forEach(pl => {
         const o = document.createElement('option');
-        o.value = pl.id;
+        o.value = usingDbProducts ? pl.id : '';
+        o.dataset.label = pl.label;
         o.dataset.price = pl.price;
         o.textContent = `${pl.label} — ฿${Number(pl.price).toLocaleString()}`;
         sel.appendChild(o);
@@ -422,6 +495,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
     } else {
       const o = document.createElement('option');
       o.value = '';
+      o.dataset.label = 'แพ็กเริ่มต้น';
       o.dataset.price = prod.price;
       o.textContent = `แพ็กเริ่มต้น — ฿${Number(prod.price).toLocaleString()}`;
       sel.appendChild(o);
@@ -444,7 +518,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
     if (!email || !password) return alert('กรุณากรอกอีเมลและรหัสผ่าน');
     const { error } = await sbClient.auth.signUp({ email, password });
     if (error) alert('สมัครไม่สำเร็จ: ' + error.message);
-    else { alert('สมัครสมาชิก TRSHOP สำเร็จ!'); closeAuthModal(); await refreshAccount(); }
+    else { alert('สมัครสมาชิก TRPROTECT สำเร็จ!'); closeAuthModal(); await refreshAccount(); }
   }
 
   async function handleSignIn() {
@@ -461,24 +535,8 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
     await refreshAccount();
   }
 
-  async function loadProducts() {
+  function renderProductsList(prods) {
     const grid = document.getElementById('product-grid');
-    const [{ data: prods, error: pErr }, { data: plans }] = await Promise.all([
-      sbClient.from('products').select('*').eq('is_active', true).order('id', { ascending: true }),
-      sbClient.from('product_plans').select('*').order('sort_order', { ascending: true })
-    ]);
-
-    if (pErr || !prods || !prods.length) {
-      grid.innerHTML = '<p class="empty-msg">ยังไม่มีรายการสินค้าในระบบ</p>';
-      return;
-    }
-
-    plansByProduct = {};
-    (plans || []).forEach(pl => {
-      if (!plansByProduct[pl.product_id]) plansByProduct[pl.product_id] = [];
-      plansByProduct[pl.product_id].push(pl);
-    });
-
     grid.innerHTML = '';
     prods.forEach(prod => {
       const pList = plansByProduct[prod.id] || [];
@@ -505,6 +563,36 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
       card.querySelector('.buy').addEventListener('click', () => openBuyModal(prod));
       grid.appendChild(card);
     });
+  }
+
+  async function loadProducts() {
+    plansByProduct = {};
+    DEFAULT_PRODUCTS.forEach(p => { plansByProduct[p.id] = p.plans; });
+    usingDbProducts = false;
+    renderProductsList(DEFAULT_PRODUCTS);
+
+    const { data: prods, error: pErr } = await sbClient
+      .from('products')
+      .select('*')
+      .eq('is_active', true)
+      .order('id', { ascending: true });
+
+    if (!pErr && prods && prods.length) {
+      const hasLegacyShop = prods.some(p => ['100', '310', 'PASS', '1060'].includes(String(p.code)));
+      if (!hasLegacyShop) {
+        const { data: plans } = await sbClient
+          .from('product_plans')
+          .select('*')
+          .order('sort_order', { ascending: true });
+        plansByProduct = {};
+        (plans || []).forEach(pl => {
+          if (!plansByProduct[pl.product_id]) plansByProduct[pl.product_id] = [];
+          plansByProduct[pl.product_id].push(pl);
+        });
+        usingDbProducts = true;
+        renderProductsList(prods);
+      }
+    }
   }
 
   async function loadOrders() {
@@ -583,31 +671,78 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
     if (!uid) return alert('กรุณากรอก UID ผู้ใช้งาน');
 
     const sel = document.getElementById('planSelect');
-    const planId = sel && sel.value ? Number(sel.value) : null;
+    const opt = sel && sel.options[sel.selectedIndex];
+    const planId = usingDbProducts && sel && sel.value ? Number(sel.value) : null;
+    const planLabel = opt ? opt.dataset.label : 'แพ็กเริ่มต้น';
+    const planPrice = opt ? Number(opt.dataset.price) : Number(selectedProduct.price);
 
     const btn = document.getElementById('confirmBuyBtn');
     btn.disabled = true;
     btn.textContent = 'กำลังทำรายการ...';
 
-    const { data, error } = await sbClient.rpc('purchase_product', {
-      p_product_id: selectedProduct.id,
-      p_player_uid: uid,
-      p_plan_id: planId
+    if (usingDbProducts) {
+      const { data, error } = await sbClient.rpc('purchase_product', {
+        p_product_id: selectedProduct.id,
+        p_player_uid: uid,
+        p_plan_id: planId
+      });
+
+      btn.disabled = false;
+      btn.textContent = 'ยืนยันการสั่งซื้อ';
+
+      if (error) {
+        alert('ทำรายการไม่สำเร็จ: ' + error.message);
+        return;
+      }
+      if (!data || !data.ok) {
+        alert((data && data.message) || 'ไม่สามารถทำรายการได้');
+        return;
+      }
+
+      alert(data.message);
+      closeBuyModal();
+      await refreshAccount();
+      return;
+    }
+
+    const { data: prof, error: profErr } = await sbClient
+      .from('profiles')
+      .select('balance')
+      .eq('id', currentUser.id)
+      .single();
+
+    if (profErr || !prof || Number(prof.balance) < planPrice) {
+      btn.disabled = false;
+      btn.textContent = 'ยืนยันการสั่งซื้อ';
+      alert('เครดิตไม่เพียงพอครับ');
+      return;
+    }
+
+    const newBal = Number(prof.balance) - planPrice;
+    const { error: updErr } = await sbClient
+      .from('profiles')
+      .update({ balance: newBal })
+      .eq('id', currentUser.id);
+
+    if (updErr) {
+      btn.disabled = false;
+      btn.textContent = 'ยืนยันการสั่งซื้อ';
+      alert('หักเครดิตไม่สำเร็จ: ' + updErr.message);
+      return;
+    }
+
+    await sbClient.from('orders').insert({
+      user_id: currentUser.id,
+      product_name: selectedProduct.name,
+      plan_label: planLabel,
+      player_uid: uid,
+      price: planPrice,
+      status: 'กำลังดำเนินการ'
     });
 
     btn.disabled = false;
     btn.textContent = 'ยืนยันการสั่งซื้อ';
-
-    if (error) {
-      alert('ทำรายการไม่สำเร็จ: ' + error.message);
-      return;
-    }
-    if (!data || !data.ok) {
-      alert((data && data.message) || 'ไม่สามารถทำรายการได้');
-      return;
-    }
-
-    alert(data.message);
+    alert('สั่งซื้อสำเร็จ!');
     closeBuyModal();
     await refreshAccount();
   }
