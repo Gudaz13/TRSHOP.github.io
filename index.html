@@ -136,7 +136,7 @@ h2{margin:28px 0 4px;font-size:21px;font-weight:700}
 }
 .banner .badge, .banner h1, .banner p{position:relative;z-index:2}
 .banner h1{margin:0 0 6px;font-size:32px;font-weight:800;font-style:italic;letter-spacing:-0.5px;text-shadow:0 0 24px rgba(56, 189, 248, 0.6)}
-.banner p{margin:0;color:#cbd5e1;font-size:14.5px;max-width:34ch}
+.banner p{margin:0;color:#cbd5e1;font-size:14.5px;max-width:36ch}
 .badge{
   align-self:flex-start;
   background:rgba(2, 132, 199, 0.25);
@@ -249,7 +249,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   nav{display:none}
   .banner{padding:22px 18px;min-height:185px}
   .banner h1{font-size:24px}
-  .banner p{font-size:13px;max-width:23ch}
+  .banner p{font-size:13px;max-width:24ch}
   .banner-logo-bg{width:180px;left:35%}
   .banner-char{right:4px;height:88%}
 }
@@ -263,7 +263,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
  <div class="wrap">
   <a class="logo" href="#home">TRSHOP</a>
   <nav>
-   <a class="on" href="#home">หน้าหลัก</a><a href="#shop">สินค้า</a><a href="#history-sec">ประวัติ</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
+   <a class="on" href="#home">หน้าหลัก</a><a href="#shop">รายการม็อด</a><a href="#history-sec">ประวัติ</a><a href="#order">วิธีสั่งซื้อ</a><a href="#contact">ติดต่อ</a>
   </nav>
   <div id="auth-area">
     <button class="login" onclick="openAuthModal()">เข้าสู่ระบบ</button>
@@ -274,24 +274,24 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 <main class="wrap" id="home">
  <section class="banner glass">
   <img src="TR.jpg" alt="" class="banner-logo-bg" onerror="this.style.display='none'">
-  <img src="ff-removebg-preview.png" alt="Free Fire Character" class="banner-char" onerror="this.style.display='none'">
+  <img src="ff-removebg-preview.png" alt="Character" class="banner-char" onerror="this.style.display='none'">
 
-  <span class="badge">SYSTEM ONLINE</span>
-  <h1>TRSHOP OFFICIAL</h1>
-  <p>บริการเติมเกมระบบอัตโนมัติ รวดเร็ว ปลอดภัย 24 ชั่วโมง</p>
+  <span class="badge">TRMODS OFFICIAL</span>
+  <h1>TRSHOP MODS</h1>
+  <p>ศูนย์รวมม็อดและตัวช่วยสายแกร่ง เลือกแพ็กเกจระยะเวลาได้ทันที ระบบอัตโนมัติ 24 ชม.</p>
  </section>
 
  <div class="tiles" id="topup">
-  <a class="tile glass" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>ร้านค้า</b><span>ดูสินค้าทั้งหมด</span></div></a>
-  <a class="tile glass" href="#topup" onclick="alert('ติดต่อแอดมินเพื่อเติมเครดิตเข้าบัญชี หรือปรับยอดในตาราง profiles ได้เลยครับ')"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเงิน</b><span>เติมเครดิตออโต้</span></div></a>
-  <a class="tile glass" href="#history-sec"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติ</b><span>เช็คสถานะคำสั่งซื้อ</span></div></a>
-  <a class="tile glass" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div><b>ติดต่อเรา</b><span>แอดมินดูแล 24 ชม.</span></div></a>
+  <a class="tile glass" href="#shop"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><b>รายการม็อด</b><span>ดูสินค้าทั้งหมด</span></div></a>
+  <a class="tile glass" href="#topup" onclick="alert('ติดต่อแอดมินเพื่อเติมเครดิตเข้าบัญชี หรือปรับยอดในตาราง profiles ได้เลยครับ')"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b>เติมเครดิต</b><span>เติมยอดเข้าบัญชี</span></div></a>
+  <a class="tile glass" href="#history-sec"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><div><b>ประวัติสั่งซื้อ</b><span>เช็คสถานะรายการ</span></div></a>
+  <a class="tile glass" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div><b>ติดต่อแอดมิน</b><span>สอบถามหรือแจ้งปัญหา</span></div></a>
  </div>
 
- <h2 id="shop">สินค้าแนะนำ</h2>
- <p class="sub">เลือกแพ็กเกจระยะเวลาที่ต้องการแล้วกดสั่งซื้อได้ทันที</p>
+ <h2 id="shop">สินค้าแนะนำ (TRMODS)</h2>
+ <p class="sub">เลือกแพ็กเกจชั่วโมงหรือจำนวนวันที่ต้องการแล้วกดสั่งซื้อได้ทันที</p>
  <div class="grid" id="product-grid">
-  <article class="prod glass"><div class="thumb">...</div><div class="in"><h3>กำลังโหลดสินค้า...</h3><div class="d">กรุณารอสักครู่</div><div class="row"><span class="price">฿0</span><button class="buy" disabled>สั่งซื้อ</button></div></div></article>
+  <article class="prod glass"><div class="thumb">...</div><div class="in"><h3>กำลังโหลดรายการม็อด...</h3><div class="d">กรุณารอสักครู่</div><div class="row"><span class="price">฿0</span><button class="buy" disabled>สั่งซื้อ</button></div></div></article>
  </div>
 
  <h2 id="history-sec">ประวัติการสั่งซื้อ</h2>
@@ -300,12 +300,12 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   <p class="empty-msg">เข้าสู่ระบบเพื่อดูประวัติการสั่งซื้อของคุณ</p>
  </div>
 
- <h2 id="order">ขั้นตอนการใช้งาน</h2>
- <p class="sub">ใช้งานง่ายผ่านระบบอัตโนมัติ</p>
+ <h2 id="order">ขั้นตอนการสั่งซื้อ</h2>
+ <p class="sub">ทำรายการไวใน 3 ขั้นตอน</p>
  <div class="steps">
-  <div class="step glass"><b>1. เติมเงินเข้าเว็บ</b><span>ยอดเครดิตอัปเดตในบัญชีสมาชิก</span></div>
-  <div class="step glass"><b>2. เลือกแพ็กเกจ & กรอก UID</b><span>เลือกชั่วโมงหรือจำนวนวันแล้วกดสั่งซื้อ</span></div>
-  <div class="step glass"><b>3. รอรับของ</b><span>ระบบบันทึกคำสั่งซื้อและหักเครดิตทันที</span></div>
+  <div class="step glass"><b>1. เติมเครดิตเข้าบัญชี</b><span>มียอดเครดิตพร้อมใช้งานในระบบ</span></div>
+  <div class="step glass"><b>2. เลือกแพ็กเกจ & กรอก UID</b><span>เลือกชั่วโมงหรือวันใช้งานแล้วกดสั่งซื้อ</span></div>
+  <div class="step glass"><b>3. รับรายการและเช็คประวัติ</b><span>ระบบหักเครดิตและบันทึกออเดอร์ทันที</span></div>
  </div>
 </main>
 
@@ -332,8 +332,8 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
     <p id="buyDesc"></p>
     <label for="planSelect">เลือกแพ็กเกจระยะเวลา</label>
     <select id="planSelect" onchange="updatePlanPrice()"></select>
-    <label for="playerUidInput">UID / ID ผู้เล่นในเกม</label>
-    <input type="text" id="playerUidInput" placeholder="กรอก UID ผู้เล่น">
+    <label for="playerUidInput">UID / ID ผู้ใช้งาน</label>
+    <input type="text" id="playerUidInput" placeholder="กรอก UID ที่ต้องการใช้งาน">
     <div class="modal-btns">
       <button class="btn-primary" id="confirmBuyBtn" onclick="submitOrder()">ยืนยันการสั่งซื้อ</button>
       <button class="btn-sec" onclick="closeBuyModal()">ยกเลิก</button>
@@ -580,7 +580,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   async function submitOrder() {
     if (!selectedProduct) return;
     const uid = document.getElementById('playerUidInput').value.trim();
-    if (!uid) return alert('กรุณากรอก UID ผู้เล่น');
+    if (!uid) return alert('กรุณากรอก UID ผู้ใช้งาน');
 
     const sel = document.getElementById('planSelect');
     const planId = sel && sel.value ? Number(sel.value) : null;
